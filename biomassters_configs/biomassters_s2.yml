@@ -1,0 +1,82 @@
+# lightning.pytorch==2.1.1
+seed_everything: 0
+trainer:
+  accelerator: auto
+  strategy: auto
+  devices: auto
+  num_nodes: 1
+  precision: 16-mixed
+  logger:
+    class_path: TensorBoardLogger
+    init_args:
+      save_dir: output
+      name: biomassters_s2
+  callbacks:
+    - class_path: RichProgressBar
+    - class_path: LearningRateMonitor
+      init_args:
+        logging_interval: epoch
+    - class_path: EarlyStopping
+      init_args:
+        monitor: val/loss
+        patience: 40
+
+  max_epochs: 2
+  check_val_every_n_epoch: 1
+  log_every_n_steps: 50
+  enable_checkpointing: true
+  default_root_dir: output/biomassters_s2
+
+data:
+  class_path: terratorch.datamodules.BioMasstersNonGeoDataModule
+  init_args:
+    data_root: '/data'
+    batch_size: 4
+    num_workers: 0
+  # default bands
+    train_transform:
+      - class_path: albumentations.RandomCrop
+        init_args:
+          height: 224
+          width: 224
+      - class_path: albumentations.D4
+      - class_path: ToTensorV2
+    val_transform:
+      - class_path: ToTensorV2
+    predict_transform: 
+      - class_path: ToTensorV2
+    drop_last: true
+    #metadata_filename: "biomassters_chip_tracker.csv"
+    sensors:
+      - "S2"
+    as_time_series: True
+    subset: 0.05
+    use_four_frames: true
+
+model:
+  class_path: terratorch.tasks.PixelwiseRegressionTask
+  init_args:
+    model_factory: EncoderDecoderFactory
+    model_args:
+      backbone: prithvi_eo_v2_300
+      backbone_kwargs:
+        pretrained: true
+        num_frames: 4
+      decoder: FCNDecoder
+      decoder_kwargs:
+        channels: 256
+        num_convs: 4
+      head_kwargs:
+        dropout: 0.1
+    loss: rmse
+
+optimizer:
+  class_path: torch.optim.AdamW
+  init_args:
+    lr: 6.e-5
+    weight_decay: 0.05
+lr_scheduler:
+  class_path: ReduceLROnPlateau
+  init_args:
+    monitor: val/loss
+

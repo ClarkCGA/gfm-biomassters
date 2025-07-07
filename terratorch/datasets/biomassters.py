@@ -170,21 +170,6 @@ class BioMasstersNonGeo(BioMassters):
         # Filter split
         self.df = self.df[self.df["split"] == self.split]
 
-        # Optional filtering
-        self._filter_and_select_data()
-
-        # Optional subsampling
-        self._random_subsample()
-
-        # generate numerical month from filename since first month is September
-        # and has numerical index of 0
-        self.df["num_month"] = (
-            self.df["filename"]
-            .str.split("_", expand=True)[2]
-            .str.split(".", expand=True)[0]
-            .astype(int)
-        )
-
         # Set dataframe index depending on the task for easier indexing
         if self.as_time_series:
             self.df["num_index"] = self.df.groupby(["chip_id"]).ngroup()
@@ -199,6 +184,21 @@ class BioMasstersNonGeo(BioMassters):
             self.df = self.df.merge(filter_df, on=["chip_id", "month"], how="inner")
 
             self.df["num_index"] = self.df.groupby(["chip_id", "month"]).ngroup()
+
+        # Optional filtering
+        self._filter_and_select_data()
+
+        # Optional subsampling
+        self._random_subsample()
+
+        # generate numerical month from filename since first month is September
+        # and has numerical index of 0
+        self.df["num_month"] = (
+            self.df["filename"]
+            .str.split("_", expand=True)[2]
+            .str.split(".", expand=True)[0]
+            .astype(int)
+        )
 
         # Adjust transforms based on the number of sensors
         if len(self.sensors) == 1:
