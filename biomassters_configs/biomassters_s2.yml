@@ -25,7 +25,7 @@ trainer:
   check_val_every_n_epoch: 1
   log_every_n_steps: 50
   enable_checkpointing: true
-  default_root_dir: output/biomassters_s2
+  default_root_dir: /output/biomassters_s2
 
 data:
   class_path: terratorch.datamodules.BioMasstersNonGeoDataModule
@@ -49,7 +49,7 @@ data:
     #metadata_filename: "biomassters_chip_tracker.csv"
     sensors:
       - "S2"
-    as_time_series: True
+    as_time_series: true
     subset: 0.05
     use_four_frames: true
 

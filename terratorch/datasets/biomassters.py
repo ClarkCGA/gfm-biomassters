@@ -102,7 +102,8 @@ class BioMasstersNonGeo(BioMassters):
         include_corrupt: bool = True,
         subset: float = 1,
         seed: int = 42,
-        use_four_frames: bool = False
+        use_four_frames: bool = False,
+        input_zeros_for_missing_frames: bool = False,
     ) -> None:
         """Initialize a new instance of BioMassters dataset.
 
@@ -158,6 +159,8 @@ class BioMasstersNonGeo(BioMassters):
         self.subset = subset
         self.seed = seed
         self.use_four_frames = use_four_frames
+        self.input_zeros_for_missing_frames = input_zeros_for_missing_frames
+
 
         self._verify()
 
@@ -170,6 +173,8 @@ class BioMasstersNonGeo(BioMassters):
         # Filter split
         self.df = self.df[self.df["split"] == self.split]
 
+        # Optional filtering
+        self._filter_and_select_data()
         # Set dataframe index depending on the task for easier indexing
         if self.as_time_series:
             self.df["num_index"] = self.df.groupby(["chip_id"]).ngroup()
@@ -185,11 +190,10 @@ class BioMasstersNonGeo(BioMassters):
 
             self.df["num_index"] = self.df.groupby(["chip_id", "month"]).ngroup()
 
-        # Optional filtering
-        self._filter_and_select_data()
-
         # Optional subsampling
         self._random_subsample()
+
+        self.index_catalog = self.df["num_index"].unique()
 
         # generate numerical month from filename since first month is September
         # and has numerical index of 0
@@ -206,18 +210,34 @@ class BioMasstersNonGeo(BioMassters):
         elif transform is None:
             self.transform = MultimodalToTensor(self.sensors)
         else:
+            mask_transform = transform['common'] if 'mask' in transform else default_transform
             transform = {
                 s: transform[s] if s in transform else default_transform
                 for s in self.sensors
             }
-            self.transform = MultimodalTransforms(transform, shared=False)
-
+            print(transform)
+            self.transform = MultimodalTransforms(transform, shared=False, non_image_modalities=['mask'], non_image_transform=mask_transform)
         if self.use_four_frames:
             self._select_4_frames()
 
     def __len__(self) -> int:
         return len(self.df["num_index"].unique())
 
+    def _create_12_step_file_list(self, chip_id: str, sens: str) -> list[str]:
+        """Create a list of 12 filenames for the given sensor.
+
+        Args:
+            sens: sensor name (e.g., 'S1', 'S2')
+        Returns:
+            list of 12 filenames for the given sensor
+        """ 
+
+        filenames = []
+        for month in range(12):
+            filename = f"{chip_id}_{sens}_{month:0>2}.tif"
+            filenames.append(filename)
+        return filenames
+    
     def _load_input(self, filenames: list[Path]) -> Tensor:
         """Load the input imagery at the index.
 
@@ -227,10 +247,15 @@ class BioMasstersNonGeo(BioMassters):
         Returns:
             input image
         """
+        sens, chip_id, _ = filenames[0].split("_")
+
+        if self.input_zeros_for_missing_frames:
+            filenames = self._create_12_step_file_list(sens, chip_id)
+    
         filepaths = [
             os.path.join(self.root, f"{self.split}_features", f) for f in filenames
         ]
-        arr_list = [rasterio.open(fp).read() for fp in filepaths]
+        arr_list = [rasterio.open(fp).read() if os.path.isfile(fp) else np.zeros((11, 256, 256), dtype=np.float32) for fp in filepaths]    
 
         if self.as_time_series:
             arr = np.stack(arr_list, axis=0) # (T, C, H, W)
@@ -326,6 +351,7 @@ class BioMasstersNonGeo(BioMassters):
     def _process_sensor_images(self, sens: str, sens_filepaths: list[str]) -> np.ndarray:
         """Process images for a given sensor."""
         img = self._load_input(sens_filepaths)
+        img[img == -9999] = 0
         if sens == "S1":
             img = img.astype(np.float32)
             linear = 10 ** (img / 10)
@@ -341,7 +367,8 @@ class BioMasstersNonGeo(BioMassters):
         return img
 
     def __getitem__(self, index: int) -> dict:
-        sample_df = self.df[self.df["num_index"] == index].copy()
+        sample_df = self.df[self.df["num_index"] == self.index_catalog[index]].copy()
+
         # Sort by satellite and month
         sample_df.sort_values(
             by=["satellite", "num_month"], inplace=True, ascending=True
@@ -356,21 +383,28 @@ class BioMasstersNonGeo(BioMassters):
             img = self._process_sensor_images(sens, sens_filepaths)
             output["image"] = img.astype(np.float32)
         else:
+            output["image"] = {}
             for sens in self.sensors:
                 sens_filepaths = [fp for fp in filepaths if sens in fp]
                 img = self._process_sensor_images(sens, sens_filepaths)
-                output[sens] = img.astype(np.float32)
+                output['image'][sens] = img.astype(np.float32)
 
         # Load target
         target_filename = sample_df["corresponding_agbm"].unique()[0]
         target = np.array(self._load_target(Path(target_filename)))
         target = target.transpose(1, 2, 0)
         output["mask"] = target
+        print(output['image'].shape)
         if self.transform:
             if len(self.sensors) == 1:
                 output = self.transform(**output)
             else:
                 output = self.transform(output)
+        
+        # # newly added
+        # if len(self.sensors) != 1:
+        #     output["image"] = torch.cat([output.pop(s) for s in self.sensors if s in output])
+
         output["mask"] = output["mask"].squeeze().float()
         return output
 
