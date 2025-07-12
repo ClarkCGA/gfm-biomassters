@@ -215,7 +215,6 @@ class BioMasstersNonGeo(BioMassters):
                 s: transform[s] if s in transform else default_transform
                 for s in self.sensors
             }
-            print(transform)
             self.transform = MultimodalTransforms(transform, shared=False, non_image_modalities=['mask'], non_image_transform=mask_transform)
         if self.use_four_frames:
             self._select_4_frames()
@@ -394,7 +393,7 @@ class BioMasstersNonGeo(BioMassters):
         target = np.array(self._load_target(Path(target_filename)))
         target = target.transpose(1, 2, 0)
         output["mask"] = target
-        print(output['image'].shape)
+        
         if self.transform:
             if len(self.sensors) == 1:
                 output = self.transform(**output)
