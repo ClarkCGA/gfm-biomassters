@@ -86,6 +86,7 @@ class BioMasstersNonGeoDataModule(NonGeoDataModule):
         subset: float = 1,
         seed: int = 42,
         use_four_frames: bool = False,
+        concat_bands: bool = True,
         **kwargs: Any,
     ) -> None:
         """
@@ -112,6 +113,7 @@ class BioMasstersNonGeoDataModule(NonGeoDataModule):
             subset (float, optional): Fraction of the dataset to use. Defaults to 1.
             seed (int, optional): Random seed for reproducibility. Defaults to 42.
             use_four_frames (bool, optional): Whether to use a four frames configuration. Defaults to False.
+            concat_bands: (bool, optional): Whether to concat all bands from all sensors together when passing to model. Defaults to True)
             **kwargs: Additional keyword arguments.
 
         Returns:
@@ -134,14 +136,25 @@ class BioMasstersNonGeoDataModule(NonGeoDataModule):
 
         self.mask_mean = MEANS["AGBM"]
         self.mask_std = STDS["AGBM"]
-        self.train_transform = wrap_in_compose_is_list(train_transform)
-        self.val_transform = wrap_in_compose_is_list(val_transform)
-        self.test_transform = wrap_in_compose_is_list(test_transform)
-        self.predict_transform = wrap_in_compose_is_list(predict_transform)
-        if len(sensors) == 1:
-            self.aug = Normalize(self.means[sensors[0]], self.stds[sensors[0]]) if aug is None else aug
+        self.train_transform = wrap_in_compose_is_list(train_transform, image_modalities=self.sensors)
+        self.val_transform = wrap_in_compose_is_list(val_transform, image_modalities=self.sensors)
+        self.test_transform = wrap_in_compose_is_list(test_transform, image_modalities=self.sensors)
+        self.predict_transform = wrap_in_compose_is_list(predict_transform, image_modalities=self.sensors)
+        # aug logic to handle concat multimodal and dict multimodal
+        self.means = {s: [MEANS[s][b] for b in self.bands[s]] for s in self.sensors}
+        self.stds  = {s: [STDS[s][b] for b in self.bands[s]] for s in self.sensors}
+        self.concat_bands = concat_bands
+        if self.concat_bands:
+            concat_means = sum((self.means[s] for s in self.sensors), [])
+            concat_stds  = sum((self.stds[s]  for s in self.sensors), [])
+            self.aug = Normalize(concat_means, concat_stds) if aug is None else aug
         else:
-            MultimodalNormalize(self.means, self.stds) if aug is None else aug
+            if len(self.sensors) == 1:
+                s = self.sensors[0]
+                self.aug = Normalize(self.means[s], self.stds[s]) if aug is None else aug
+            else:
+                self.aug = MultimodalNormalize(self.means, self.stds) if aug is None else aug
+        
         self.drop_last = drop_last
         self.as_time_series = as_time_series
         self.metadata_filename = metadata_filename

@@ -22,6 +22,8 @@ from terratorch.datasets.utils import default_transform
 from torchgeo.datasets import BioMassters
 from torchgeo.datasets.utils import percentile_normalization
 
+import warnings
+warnings.filterwarnings('ignore', module='rasterio')
 
 class BioMasstersNonGeo(BioMassters):
     """[BioMassters Dataset](https://huggingface.co/datasets/ibm-nasa-geospatial/BioMassters) for Aboveground Biomass prediction.
@@ -104,6 +106,7 @@ class BioMasstersNonGeo(BioMassters):
         seed: int = 42,
         use_four_frames: bool = False,
         input_zeros_for_missing_frames: bool = False,
+        concat_bands: bool = True
     ) -> None:
         """Initialize a new instance of BioMassters dataset.
 
@@ -121,6 +124,11 @@ class BioMasstersNonGeo(BioMassters):
             max_cloud_percentage: maximum allowed cloud percentage for images
             max_red_mean: maximum allowed red_mean value for images
             include_corrupt: whether to include images marked as corrupted
+            subset: the proportion of the dataset for random sampling (0 < subset <= 1)
+            seed: for random operators
+            use_four_frames: if true, selects 4 least cloudy frames of S2 and equivalent of S1
+            input_zeros_for_missing_frames: if true, inputs 0 for missing S2 frames
+            concat_bands: if true, concats all bands for all sensors, else returns a dict of sensors
 
         Raises:
             AssertionError: if ``split`` or ``sensors`` is invalid
@@ -160,6 +168,7 @@ class BioMasstersNonGeo(BioMassters):
         self.seed = seed
         self.use_four_frames = use_four_frames
         self.input_zeros_for_missing_frames = input_zeros_for_missing_frames
+        self.concat_bands = concat_bands
 
 
         self._verify()
@@ -210,12 +219,7 @@ class BioMasstersNonGeo(BioMassters):
         elif transform is None:
             self.transform = MultimodalToTensor(self.sensors)
         else:
-            mask_transform = transform['common'] if 'mask' in transform else default_transform
-            transform = {
-                s: transform[s] if s in transform else default_transform
-                for s in self.sensors
-            }
-            self.transform = MultimodalTransforms(transform, shared=False, non_image_modalities=['mask'], non_image_transform=mask_transform)
+            self.transform = MultimodalTransforms(transform, shared=True, non_image_modalities=[])
         if self.use_four_frames:
             self._select_4_frames()
 
@@ -334,18 +338,24 @@ class BioMasstersNonGeo(BioMassters):
         return img
 
     def _select_4_frames(self):
-        """Filter the dataset to select only 4 frames per sample."""
+        """Filter the dataset to select only 4 frames per sample, ensuring that months are consistent across platforms"""
 
-        if "cloud_percentage" in self.df.columns:
-            self.df = self.df.sort_values(by=["chip_id", "cloud_percentage"])
-        else:
-            self.df = self.df.sort_values(by=["chip_id", "num_month"])
 
-        self.df = (
-            self.df.groupby("chip_id")
-            .head(4)  # Select the first 4 frames per chip
-            .reset_index(drop=True)
+        self.df = self.df.sort_values(
+            by=["chip_id", "cloud_percentage"]
         )
+
+        s2_df = self.df[self.df["satellite"] == 'S2']
+        s2_df = s2_df.groupby(["chip_id"]).head(4)
+
+        selected_months = s2_df[['chip_id', 'num_month']]
+
+        # Filter S1 data to only include scenes with the same months as selected S2 scenes
+        s1_df = self.df[self.df["satellite"] == 'S1']
+        s1_df = s1_df.merge(selected_months, on=['chip_id', 'num_month'], how='inner')
+
+        # Combine the filtered S1 and S2 dataframes
+        self.df = pd.concat([s1_df, s2_df], ignore_index=True)
 
     def _process_sensor_images(self, sens: str, sens_filepaths: list[str]) -> np.ndarray:
         """Process images for a given sensor."""
@@ -382,11 +392,10 @@ class BioMasstersNonGeo(BioMassters):
             img = self._process_sensor_images(sens, sens_filepaths)
             output["image"] = img.astype(np.float32)
         else:
-            output["image"] = {}
             for sens in self.sensors:
                 sens_filepaths = [fp for fp in filepaths if sens in fp]
                 img = self._process_sensor_images(sens, sens_filepaths)
-                output['image'][sens] = img.astype(np.float32)
+                output[sens] = img.astype(np.float32)
 
         # Load target
         target_filename = sample_df["corresponding_agbm"].unique()[0]
@@ -399,12 +408,12 @@ class BioMasstersNonGeo(BioMassters):
                 output = self.transform(**output)
             else:
                 output = self.transform(output)
-        
-        # # newly added
-        # if len(self.sensors) != 1:
-        #     output["image"] = torch.cat([output.pop(s) for s in self.sensors if s in output])
 
+        if len(self.sensors) != 1 and self.concat_bands:
+            output["image"] = torch.cat([output.pop(s) for s in self.sensors if s in output])
+                    
         output["mask"] = output["mask"].squeeze().float()
+        
         return output
 
     def _filter_and_select_data(self):

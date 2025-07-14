@@ -14,7 +14,7 @@ trainer:
     class_path: TensorBoardLogger
     init_args:
       save_dir: /output
-      name: prithvi300
+      name: prithvi300_s1_s2_test
   callbacks:
   - class_path: RichProgressBar
   - class_path: LearningRateMonitor
@@ -40,15 +40,17 @@ data:
   class_path: BioMasstersNonGeoDataModule
   init_args:
     data_root: '/data'
-    batch_size: 4
+    batch_size: 1
     num_workers: 8
     bands:
-        # - VV_Asc
-        # - VH_Asc
-        # - VV_Desc
-        # - VH_Desc
-        # - RVI_Asc
-        # - RVI_Desc
+      S1:
+        - VV_Asc
+        - VH_Asc
+        - VV_Desc
+        - VH_Desc
+        - RVI_Asc
+        - RVI_Desc
+      S2:
         - BLUE
         - GREEN
         - RED
@@ -94,10 +96,12 @@ data:
     drop_last: true
     metadata_filename: "biomassters_chip_tracker.csv"
     sensors:
-      - "S2"
+      - S2
+      - S1
     as_time_series: true
     subset: 1.0
     use_four_frames: true
+    concat_bands: true
 
 model:
   class_path: terratorch.tasks.PixelwiseRegressionTask
@@ -109,12 +113,12 @@ model:
       backbone_patch_size: 16
       backbone_num_frames: 4
       backbone_bands:
-        # - VV_Asc
-        # - VH_Asc
-        # - VV_Desc
-        # - VH_Desc
-        # - RVI_Asc
-        # - RVI_Desc
+        - VV_Asc
+        - VH_Asc
+        - VV_Desc
+        - VH_Desc
+        - RVI_Asc
+        - RVI_Desc
         - BLUE
         - GREEN
         - RED
