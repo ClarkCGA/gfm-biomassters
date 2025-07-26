@@ -79,7 +79,7 @@ class IgnoreIndexLossWrapper(nn.Module):
         msg = "Only 'mean' and None reduction supported"
         raise Exception(msg)
 
-
+    
 class IgnoreIndexMetricWrapper(WrapperMetric):
     """Wrapper over other metric that will ignore certain values.
 
@@ -225,7 +225,6 @@ class PixelwiseRegressionTask(TerraTorchTask):
         if model:
             # Custom_model
             self.model = model
-
         self.train_loss_handler = LossHandler(self.train_metrics.prefix)
         self.test_loss_handler: list[LossHandler] = []
         for metrics in self.test_metrics:

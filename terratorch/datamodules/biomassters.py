@@ -87,6 +87,7 @@ class BioMasstersNonGeoDataModule(NonGeoDataModule):
         seed: int = 42,
         use_four_frames: bool = False,
         concat_bands: bool = True,
+        input_zeros_for_missing_frames: bool = False,
         **kwargs: Any,
     ) -> None:
         """
@@ -114,6 +115,7 @@ class BioMasstersNonGeoDataModule(NonGeoDataModule):
             seed (int, optional): Random seed for reproducibility. Defaults to 42.
             use_four_frames (bool, optional): Whether to use a four frames configuration. Defaults to False.
             concat_bands: (bool, optional): Whether to concat all bands from all sensors together when passing to model. Defaults to True)
+            input_zeros_for_missing_frames: if true, inputs 0 for missing S2 frames
             **kwargs: Additional keyword arguments.
 
         Returns:
@@ -164,7 +166,9 @@ class BioMasstersNonGeoDataModule(NonGeoDataModule):
         self.subset = subset
         self.seed = seed
         self.use_four_frames = use_four_frames
-
+        
+        self.input_zeros_for_missing_frames = input_zeros_for_missing_frames
+        
     def setup(self, stage: str) -> None:
         """Set up datasets.
 
@@ -188,6 +192,7 @@ class BioMasstersNonGeoDataModule(NonGeoDataModule):
                 subset=self.subset,
                 seed=self.seed,
                 use_four_frames=self.use_four_frames,
+                input_zeros_for_missing_frames = self.input_zeros_for_missing_frames, 
             )
         if stage in ["fit", "validate"]:
             self.val_dataset = self.dataset_class(
@@ -206,6 +211,7 @@ class BioMasstersNonGeoDataModule(NonGeoDataModule):
                 subset=self.subset,
                 seed=self.seed,
                 use_four_frames=self.use_four_frames,
+                input_zeros_for_missing_frames = self.input_zeros_for_missing_frames, 
             )
         if stage in ["test"]:
             self.test_dataset = self.dataset_class(
@@ -224,6 +230,7 @@ class BioMasstersNonGeoDataModule(NonGeoDataModule):
                 subset=self.subset,
                 seed=self.seed,
                 use_four_frames=self.use_four_frames,
+                input_zeros_for_missing_frames = self.input_zeros_for_missing_frames, 
             )
         if stage in ["predict"]:
             self.predict_dataset = self.dataset_class(
@@ -242,6 +249,7 @@ class BioMasstersNonGeoDataModule(NonGeoDataModule):
                 subset=self.subset,
                 seed=self.seed,
                 use_four_frames=self.use_four_frames,
+                input_zeros_for_missing_frames = self.input_zeros_for_missing_frames, 
             )
 
     def _dataloader_factory(self, split: str):
