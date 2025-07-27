@@ -146,6 +146,10 @@ class BioMasstersNonGeoDataModule(NonGeoDataModule):
         self.means = {s: [MEANS[s][b] for b in self.bands[s]] for s in self.sensors}
         self.stds  = {s: [STDS[s][b] for b in self.bands[s]] for s in self.sensors}
         self.concat_bands = concat_bands
+        self.use_four_frames = use_four_frames
+        if not self.use_four_frames:
+            self.means = {sensor: means * 3 for sensor, means in self.means.items()}
+            self.stds = {sensor: stds * 3 for sensor, stds in self.stds.items()}
         if self.concat_bands:
             concat_means = sum((self.means[s] for s in self.sensors), [])
             concat_stds  = sum((self.stds[s]  for s in self.sensors), [])
@@ -165,7 +169,6 @@ class BioMasstersNonGeoDataModule(NonGeoDataModule):
         self.include_corrupt = include_corrupt
         self.subset = subset
         self.seed = seed
-        self.use_four_frames = use_four_frames
         
         self.input_zeros_for_missing_frames = input_zeros_for_missing_frames
         

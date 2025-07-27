@@ -40,8 +40,8 @@ data:
   class_path: BioMasstersNonGeoDataModule
   init_args:
     data_root: '/data'
-    batch_size: 4
-    num_workers: 8
+    batch_size: 1
+    num_workers: 0
     bands:
       S1:
         - VV_Asc
@@ -120,6 +120,18 @@ model:
         - VH_Desc
         - RVI_Asc
         - RVI_Desc
+        - VV_As
+        - VV_Asc
+        - VH_Asc
+        - VV_Desc
+        - VH_Desc
+        - RVI_Asc
+        - VV_As
+        - VV_Asc
+        - VH_Asc
+        - VV_Desc
+        - VH_Desc
+        - RVI_Asc
         - BLUE
         - GREEN
         - RED
@@ -130,12 +142,7 @@ model:
         # - NIR_NARROW
         - SWIR_1
         - SWIR_2
-        - VV_Asc
-        - VH_Asc
-        - VV_Desc
-        - VH_Desc
-        - RVI_Asc
-        - RVI_Desc
+        # - CLOUD_PROBABILITY
         - BLUE
         - GREEN
         - RED
@@ -146,12 +153,7 @@ model:
         # - NIR_NARROW
         - SWIR_1
         - SWIR_2
-        - VV_Asc
-        - VH_Asc
-        - VV_Desc
-        - VH_Desc
-        - RVI_Asc
-        - RVI_Desc
+        # - CLOUD_PROBABILITY
         - BLUE
         - GREEN
         - RED
