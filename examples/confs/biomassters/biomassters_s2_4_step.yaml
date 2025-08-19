@@ -9,12 +9,12 @@ trainer:
   strategy: auto
   devices: auto
   num_nodes: 1
-  precision: bf16-mixed
+  precision: 16-mixed
   logger:
     class_path: TensorBoardLogger
     init_args:
-      save_dir: /output
-      name: prithvi300_s1_s2_test
+      save_dir: /output/paper_experiments
+      name: s2_4_step 
   callbacks:
   - class_path: RichProgressBar
   - class_path: LearningRateMonitor
@@ -43,14 +43,12 @@ data:
     batch_size: 4
     num_workers: 8
     bands:
-      S1:
-        - VV_Asc
-        - VH_Asc
-        - VV_Desc
-        - VH_Desc
-        - RVI_Asc
-        - RVI_Desc
-      S2:
+        # - VV_Asc
+        # - VH_Asc
+        # - VV_Desc
+        # - VH_Desc
+        # - RVI_Asc
+        # - RVI_Desc
         - BLUE
         - GREEN
         - RED
@@ -96,12 +94,10 @@ data:
     drop_last: true
     metadata_filename: "biomassters_chip_tracker.csv"
     sensors:
-      - S2
-      - S1
+      - "S2"
     as_time_series: true
     subset: 1.0
     use_four_frames: true
-    concat_bands: true
 
 model:
   class_path: terratorch.tasks.PixelwiseRegressionTask
@@ -113,12 +109,12 @@ model:
       backbone_patch_size: 16
       backbone_num_frames: 4
       backbone_bands:
-        - VV_Asc
-        - VH_Asc
-        - VV_Desc
-        - VH_Desc
-        - RVI_Asc
-        - RVI_Desc
+        # - VV_Asc
+        # - VH_Asc
+        # - VV_Desc
+        # - VH_Desc
+        # - RVI_Asc
+        # - RVI_Desc
         - BLUE
         - GREEN
         - RED
@@ -131,7 +127,10 @@ model:
         - SWIR_2
         # - CLOUD_PROBABILITY
       rescale: true
-      decoder: IdentityDecoder
+      decoder: FCNDecoder
+      decoder_num_convs: 4
+      decoder_channels: 256
+      head_channel_list:
       head_dropout: 0.1
       head_final_act: torch.nn.ReLU
       head_channel_list:

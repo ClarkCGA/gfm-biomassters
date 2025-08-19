@@ -13,8 +13,8 @@ trainer:
   logger:
     class_path: TensorBoardLogger
     init_args:
-      save_dir: /output
-      name: s2_s1_fcn 
+      save_dir: /output/paper_experiments
+      name: s2_12_step
   callbacks:
   - class_path: RichProgressBar
   - class_path: LearningRateMonitor
@@ -43,25 +43,13 @@ data:
     batch_size: 4
     num_workers: 8
     bands:
-      S1:
-        - VV_Asc
-        - VH_Asc
-        - VV_Desc
-        - VH_Desc
-        - RVI_Asc
-        - RVI_Desc
-      S2:
         - BLUE
         - GREEN
         - RED
-        # - RED_EDGE_1
-        # - RED_EDGE_2
-        # - RED_EDGE_3
         - NIR_BROAD
-        # - NIR_NARROW
         - SWIR_1
         - SWIR_2
-        # - CLOUD_PROBABILITY
+
     train_transform:
       - class_path: FlattenTemporalIntoChannels
       - class_path: albumentations.RandomCrop
@@ -97,11 +85,11 @@ data:
     metadata_filename: "biomassters_chip_tracker.csv"
     sensors:
       - S2
-      - S1
     as_time_series: true
     subset: 1.0
-    use_four_frames: true
-    concat_bands: true
+    use_four_frames: false
+    input_zeros_for_missing_frames: true
+    concat_bands: false
 
 model:
   class_path: terratorch.tasks.PixelwiseRegressionTask
@@ -113,12 +101,12 @@ model:
       backbone_patch_size: 16
       backbone_num_frames: 4
       backbone_bands:
-        - VV_Asc
-        - VH_Asc
-        - VV_Desc
-        - VH_Desc
-        - RVI_Asc
-        - RVI_Desc
+        # - VV_Asc
+        # - VH_Asc
+        # - VV_Desc
+        # - VH_Desc
+        # - RVI_Asc
+        # - RVI_Desc
         - BLUE
         - GREEN
         - RED
@@ -130,6 +118,18 @@ model:
         - SWIR_1
         - SWIR_2
         # - CLOUD_PROBABILITY
+        - BLUE
+        - GREEN
+        - RED
+        - NIR_BROAD
+        - SWIR_1
+        - SWIR_2       
+        - BLUE
+        - GREEN
+        - RED
+        - NIR_BROAD
+        - SWIR_1
+        - SWIR_2
       rescale: true
       decoder: FCNDecoder
       decoder_num_convs: 4

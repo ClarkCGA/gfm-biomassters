@@ -24,8 +24,12 @@ RUN python3 -m venv /opt/app-root/src/venv
 RUN chgrp 0 -R /opt/app-root/src/venv/
 RUN chmod 775 -R /opt/app-root/src/venv
 
+# Add venv to the PATH
+ENV VIRTUAL_ENV=/opt/app-root/src/venv
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+
 # Install dependencies that don't change often
-RUN . /opt/app-root/src/venv/bin/activate && pip install --no-cache-dir --upgrade pip
+RUN pip install --no-cache-dir --upgrade pip
 # RUN pip install /opt/app-root/src/terratorch
 
 USER root
@@ -34,4 +38,4 @@ RUN apt-get purge -y build-essential && \
     rm -rf /var/lib/apt/lists/*
 
 # Install terratorch in editable mode when container starts
-CMD ["bash", "-c", "cd /opt/app-root/src && . venv/bin/activate && pip install -e ./terratorch && bash"]
+CMD ["bash", "-c", "cd /opt/app-root/src && pip install -e ./terratorch && bash"]

@@ -1,5 +1,5 @@
 services:
-  gfm-biomassters:
+  terratorch:
     image: gfm-biomassters:latest
     build: .
     stdin_open: true
@@ -8,7 +8,7 @@ services:
        - /workspace/Denys/biomassters/BioMassters-extracted/:/data/
        - /workspace/Denys/biomassters/gfm-biomassters-terratorch/gfm-biomassters-output/:/output/
        - /workspace/Denys/biomassters/gfm-biomassters-terratorch/gfm-biomassters/:/opt/app-root/src/terratorch/
-    shm_size: '2gb'
+    shm_size: '16gb'
     deploy:
       resources:
         reservations:
