@@ -6,7 +6,7 @@ import random
 from collections.abc import Sequence
 from pathlib import Path
 from typing import Any, Union
-
+import pdb
 import albumentations as A
 import matplotlib.pyplot as plt
 import numpy as np
@@ -457,49 +457,13 @@ class BioMasstersNonGeo(BioMassters):
             a matplotlib Figure with the rendered sample
         """
         # Determine if the sample contains multiple sensors or a single sensor
-        if isinstance(sample["image"], dict):
-            ncols = len(self.sensors) + 1
-        else:
-            ncols = 2  # One for the image and one for the mask
-
+        ncols = len(self.sensors) + 1
         showing_predictions = "prediction" in sample
         if showing_predictions:
-            ncols += 1
+            ncols += 2
 
-        fig, axs = plt.subplots(1, ncols=ncols, figsize=(5 * ncols, 10))
-
-        if isinstance(sample["image"], dict):
-            # Multiple sensors case
-            for idx, sens in enumerate(self.sensors):
-                img = sample["image"][sens].numpy()
-                if self.as_time_series:
-                    # Plot last time step
-                    img = img[:, -1, ...]
-                if sens == "S2":
-                    img = img[[2, 1, 0], ...].transpose(1, 2, 0)
-                    img = percentile_normalization(img)
-                else:
-                    co_polarization = img[0]  # transmit == receive
-                    cross_polarization = img[1]  # transmit != receive
-                    ratio = co_polarization / (cross_polarization + 1e-6)
-
-                    co_polarization = np.clip(co_polarization / 0.3, 0, 1)
-                    cross_polarization = np.clip(cross_polarization / 0.05, 0, 1)
-                    ratio = np.clip(ratio / 25, 0, 1)
-
-                    img = np.stack(
-                        (co_polarization, cross_polarization, ratio), axis=0
-                    )
-                    img = img.transpose(1, 2, 0)  # Convert to (H, W, 3)
-
-                axs[idx].imshow(img)
-                axs[idx].axis("off")
-                if show_titles:
-                    axs[idx].set_title(sens)
-            mask_idx = len(self.sensors)
-        else:
-            # Single sensor case
-            sens = self.sensors[0]
+        fig, axs = plt.subplots(1, ncols=ncols, figsize=(5 * ncols, 5), layout="constrained")
+        for idx, sens in enumerate(self.sensors):
             img = sample["image"].numpy()
             if self.as_time_series:
                 # Plot last time step
@@ -508,29 +472,32 @@ class BioMasstersNonGeo(BioMassters):
                 img = img[[2, 1, 0], ...].transpose(1, 2, 0)
                 img = percentile_normalization(img)
             else:
+                img = img[[6, 7], ...]
                 co_polarization = img[0]  # transmit == receive
                 cross_polarization = img[1]  # transmit != receive
                 ratio = co_polarization / (cross_polarization + 1e-6)
 
-                co_polarization = np.clip(co_polarization / 0.3, 0, 1)
-                cross_polarization = np.clip(cross_polarization / 0.05, 0, 1)
-                ratio = np.clip(ratio / 25, 0, 1)
+                # co_polarization = np.clip(co_polarization / 0.3, 0, 1)
+                # cross_polarization = np.clip(cross_polarization / 0.05, 0, 1)
+                # ratio = np.clip(ratio / 25, 0, 1)
+                co_polarization = percentile_normalization(co_polarization)
+                cross_polarization = percentile_normalization(cross_polarization)
+                ratio = percentile_normalization(ratio)
 
                 img = np.stack(
                     (co_polarization, cross_polarization, ratio), axis=0
                 )
                 img = img.transpose(1, 2, 0)  # Convert to (H, W, 3)
 
-            axs[0].imshow(img)
-            axs[0].axis("off")
+            axs[idx].imshow(img)
+            axs[idx].axis("off")
             if show_titles:
-                axs[0].set_title(sens)
-            mask_idx = 1
-
+                axs[idx].set_title(sens)
+        mask_idx = len(self.sensors)
         # Plot target mask
         if "mask" in sample:
             target = sample["mask"].squeeze()
-            target_im = axs[mask_idx].imshow(target, cmap="YlGn")
+            target_im = axs[mask_idx].imshow(target, cmap="YlGn", vmin=0, vmax=300)
             plt.colorbar(target_im, ax=axs[mask_idx], fraction=0.046, pad=0.04)
             axs[mask_idx].axis("off")
             if show_titles:
@@ -540,11 +507,19 @@ class BioMasstersNonGeo(BioMassters):
         if showing_predictions:
             pred_idx = mask_idx + 1
             prediction = sample["prediction"].squeeze()
-            pred_im = axs[pred_idx].imshow(prediction, cmap="YlGn")
+            pred_im = axs[pred_idx].imshow(prediction, cmap="YlGn", vmin=0, vmax=300)
             plt.colorbar(pred_im, ax=axs[pred_idx], fraction=0.046, pad=0.04)
             axs[pred_idx].axis("off")
             if show_titles:
                 axs[pred_idx].set_title("Prediction")
+
+            error_idx = pred_idx + 1
+            error = target - prediction
+            error_im = axs[error_idx].imshow(error, cmap="bwr_r", vmin=-100, vmax=100)
+            plt.colorbar(error_im, ax=axs[error_idx], fraction=0.046, pad=0.04)
+            axs[error_idx].axis("off")
+            if show_titles:
+                axs[error_idx].set_title("Error (Target - Prediction)")
 
         if suptitle is not None:
             plt.suptitle(suptitle)

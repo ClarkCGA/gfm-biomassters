@@ -14,7 +14,7 @@ trainer:
     class_path: TensorBoardLogger
     init_args:
       save_dir: /output/paper_experiments
-      name: s2_s1_12_step
+      name: s2_s1_12_step_005_subset
   callbacks:
   - class_path: RichProgressBar
   - class_path: LearningRateMonitor
@@ -40,8 +40,8 @@ data:
   class_path: BioMasstersNonGeoDataModule
   init_args:
     data_root: '/data'
-    batch_size: 1
-    num_workers: 0
+    batch_size: 4
+    num_workers: 8
     bands:
       S1:
         - VV_Asc
@@ -99,7 +99,7 @@ data:
       - S2
       - S1
     as_time_series: true
-    subset: 1.0
+    subset: 0.05
     use_four_frames: false
     input_zeros_for_missing_frames: true
     concat_bands: true

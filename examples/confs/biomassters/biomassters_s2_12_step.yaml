@@ -40,8 +40,8 @@ data:
   class_path: BioMasstersNonGeoDataModule
   init_args:
     data_root: '/data'
-    batch_size: 4
-    num_workers: 8
+    batch_size: 1
+    num_workers: 0
     bands:
         - BLUE
         - GREEN

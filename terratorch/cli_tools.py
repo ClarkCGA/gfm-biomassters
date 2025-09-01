@@ -16,6 +16,7 @@ from copy import deepcopy
 from datetime import timedelta
 from pathlib import Path
 from typing import Any, Optional
+from rasterio.transform import from_origin
 
 import albumentations
 import cv2  # noqa: F401
@@ -148,17 +149,34 @@ def save_prediction(
     suffix: str = "pred",
     output_file_name: str | None = None,
 ):
-    mask, metadata = open_tiff(input_file_name)
-    mask = np.where(mask == metadata["nodata"], 1, 0)
-    mask = np.max(mask, axis=0)
-    result = np.where(mask == 1, -1, prediction.detach().cpu())
+    if isinstance(prediction, torch.Tensor):
+        prediction = prediction.cpu().numpy()
 
-    ##### Save file to disk
-    metadata["count"] = 1
-    metadata["dtype"] = dtype
-    metadata["compress"] = "lzw"
-    metadata["nodata"] = -1
-    file_name = os.path.basename(input_file_name)
+    if input_file_name:
+        mask, metadata = open_tiff(input_file_name)
+        mask = np.where(mask == metadata["nodata"], 1, 0)
+        mask = np.max(mask, axis=0)
+        result = np.where(mask == 1, -1, prediction)
+
+        ##### Save file to disk
+        metadata["count"] = 1
+        metadata["dtype"] = dtype
+        metadata["compress"] = "lzw"
+        metadata["nodata"] = -1
+        file_name = os.path.basename(input_file_name)
+    else:
+        result = prediction
+        metadata = {
+            "driver": "GTiff",
+            "dtype": dtype,
+            "nodata": -1,
+            "width": result.shape[-1],
+            "height": result.shape[-2],
+            "count": 1 if len(result.shape) == 2 else result.shape[0],
+            "crs": None,
+            "transform": from_origin(0, 0, 1, 1),
+            "compress": "lzw",
+        }
 
     if not output_file_name:
         file_name_no_ext = os.path.splitext(file_name)[0]
@@ -253,6 +271,18 @@ class CustomWriter(BasePredictionWriter):
                         output_dir,
                         dtype=trainer.out_dtype,
                         suffix=suffix,
+                        output_file_name=output_file_prefix,
+                    )
+            if isinstance(pred_batch_, torch.Tensor):
+                file_name = None
+
+                for batch in torch.unbind(pred_batch_, dim=0):
+                   save_prediction(
+                        batch,
+                        file_name,
+                        output_dir,
+                        dtype=trainer.out_dtype,
+                        suffix=str(batch_idx),
                         output_file_name=output_file_prefix,
                     )
 

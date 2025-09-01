@@ -7,6 +7,7 @@ services:
     volumes:
        - /workspace/Denys/biomassters/BioMassters-extracted/:/data/
        - /workspace/Denys/biomassters/gfm-biomassters-terratorch/gfm-biomassters-output/:/output/
+       - /workspace/Denys/biomassters/paper_results/baseline/:/baseline/
        - /workspace/Denys/biomassters/gfm-biomassters-terratorch/gfm-biomassters/:/opt/app-root/src/terratorch/
     shm_size: '16gb'
     deploy:
