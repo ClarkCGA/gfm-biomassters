@@ -11,7 +11,7 @@ trainer:
   num_nodes: 1
   precision: 16-mixed
   logger:
-    class_path: TensorBoardLogger
+    class_path: lightning.pytorch.loggers.CSVLogger
     init_args:
       save_dir: /output/paper_experiments
       name: s2_s1_4_step
@@ -77,6 +77,16 @@ data:
         init_args:
           n_timesteps: 4
     val_transform:
+      - class_path: FlattenTemporalIntoChannels
+      - class_path: albumentations.CenterCrop
+        init_args:
+          height: 224
+          width: 224
+      - class_path: ToTensorV2
+      - class_path: UnflattenTemporalFromChannels
+        init_args:
+          n_timesteps: 4
+    test_transform: 
       - class_path: FlattenTemporalIntoChannels
       - class_path: albumentations.CenterCrop
         init_args:

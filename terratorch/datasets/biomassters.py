@@ -402,7 +402,6 @@ class BioMasstersNonGeo(BioMassters):
         target = np.array(self._load_target(Path(target_filename)))
         target = target.transpose(1, 2, 0)
         output["mask"] = target
-        
         if self.transform:
             if len(self.sensors) == 1:
                 output = self.transform(**output)

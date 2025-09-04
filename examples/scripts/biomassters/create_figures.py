@@ -17,9 +17,9 @@ def RMSE(target,pred):
     return np.sqrt(np.mean((target-pred)**2))
 
 def plot_predictions_with_baseline(input_dir, target_dir, baseline_dir, pred_dir):
-    fig, axes = plt.subplots(5, 4, figsize=(20, 25), layout="constrained")
+    fig, axes = plt.subplots(4, 4, figsize=(12, 12), layout="constrained")
     a = 0
-    for i in range(10,15):
+    for i in [101,102,103,104]:
         rgb = numpy.asarray(PIL.Image.open(input_dir / f'test_input_{i}.tif'))
         target = numpy.asarray(PIL.Image.open(target_dir / f'test_target_{i}.tif'))
         baseline_output = numpy.asarray(PIL.Image.open(baseline_dir / f'test_output_{i}.tif'))
@@ -29,24 +29,24 @@ def plot_predictions_with_baseline(input_dir, target_dir, baseline_dir, pred_dir
         baseline_rmse = RMSE(baseline_output, target)
         
         axes[a, 0].imshow(rgb)
-        axes[a, 0].set_title(f'RGB Visualization of S2 Inputs\nMonth of AGBM Observation')
+        axes[a, 0].set_title(f'S2 Input RGB')
         axes[a, 0].axis('off')
                              
         axes[a, 1].imshow(target, vmin=0, vmax=300)
-        axes[a, 1].set_title(f'Target:\nmin: {"%.2f" % target.min()}, max: {"%.2f" % target.max()}, mean: {"%.2f" % target.mean()}')
+        axes[a, 1].set_title(f'AGB Target')
         axes[a, 1].axis('off')
         
         axes[a, 2].imshow(baseline_output,vmin=0,vmax=300)
-        axes[a, 2].set_title(f'Baseline Model Prediction:\nmin: {"%.2f" % baseline_output.min()}, max: {"%.2f" % baseline_output.max()}, mean: {"%.2f" % baseline_output.mean()}, rmse: {"%.2f" % baseline_rmse}')
+        axes[a, 2].set_title(f'Baseline Predction: RMSE {"%.2f" % baseline_rmse}')
         axes[a, 2].axis('off')
         
         im = axes[a, 3].imshow(prithvi_output, vmin=0, vmax=300)
-        axes[a, 3].set_title(f'Prithvi U-Net Prediction:\nmin: {"%.2f" % prithvi_output.min()}, max: {"%.2f" % prithvi_output.max()}, mean: {"%.2f" % prithvi_output.mean()}, rmse: {"%.2f" % prithvi_rmse}')
+        axes[a, 3].set_title(f'Prithvi Prediction: RMSE {"%.2f" % prithvi_rmse}')
         axes[a, 3].axis('off')
 
         a+=1
         
-    plt.colorbar(im, ax=axes[[2]], location='right')
+    fig.colorbar(im, ax=axes[:, 3], location='right', shrink=1.0)
 
     plt.savefig(pred_dir / 'map_comparison.png')
 
@@ -56,8 +56,8 @@ def plot_prediction_histograms(target_dir, baseline_dir, pred_dir):
     baseline_values = get_all_values(baseline_dir)
     pred_values = get_all_values(pred_dir / 'predictions')
     
-    title1 = "Prithvi 300M Predicted vs Observed AGBM"
-    title2 = "Baseline Predicted vs Observed AGBM"
+    title1 = "Prithvi-EO-2.0-300M Predicted vs Observed AGB"
+    title2 = "Baseline Predicted vs Observed AGB"
     
     for predictions, title in zip([pred_values, baseline_values], [title1, title2]):
         H, xedges, yedges = np.histogram2d(
@@ -98,8 +98,8 @@ def plot_prediction_histograms(target_dir, baseline_dir, pred_dir):
 
         #vmax=np.percentile(H_log[~np.isnan(H_log)], 99)
         # Labels and title
-        plt.xlabel("Observed AGBM")
-        plt.ylabel("Predicted AGBM")
+        plt.xlabel("Observed AGB")
+        plt.ylabel("Predicted AGB")
         plt.colorbar(label='Log(Frequency)')
         plt.title(title)
         plt.savefig(pred_dir / f'{title.split()[0]}.png')

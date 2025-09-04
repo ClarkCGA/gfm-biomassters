@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Ensure the docker-compose service is running
-docker compose up -d
+COMPOSE_FILE="/workspace/Denys/biomassters/gfm-biomassters-terratorch/gfm-biomassters/compose.yml"
 
 CONFIGS=(
     "terratorch/examples/confs/biomassters/biomassters_s2_12_step.yaml"
@@ -22,7 +22,7 @@ for i in $(seq 1 $REPEATS); do
         echo "Starting ${CONFIG_FILE} on GPU ${DEVICE_ID}"
         
         # The command is now simpler as the venv is active by default
-        docker compose exec -T terratorch bash -c "CUDA_VISIBLE_DEVICES=${DEVICE_ID} terratorch fit -c ${CONFIG_FILE} --seed_everything $((i+1))" &
+        docker compose -f "${COMPOSE_FILE}" exec -T terratorch bash -c "CUDA_VISIBLE_DEVICES=${DEVICE_ID} terratorch fit -c ${CONFIG_FILE} --seed_everything $((i+1))" &
         pids+=($!)
     done
 
