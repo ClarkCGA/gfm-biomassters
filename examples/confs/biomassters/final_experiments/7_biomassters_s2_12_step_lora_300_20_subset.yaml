@@ -11,10 +11,10 @@ trainer:
   num_nodes: 1
   precision: 16-mixed
   logger:
-    class_path: lightning.pytorch.loggers.CSVLogger
+    class_path: TensorBoardLogger
     init_args:
-      save_dir: /output/paper_experiments
-      name: s2_s1_12_step_01_subset
+      save_dir: /output/final_experiments
+      name: 7_biomassters_s2_12_step_lora_300_20_subset
   callbacks:
   - class_path: RichProgressBar
   - class_path: LearningRateMonitor
@@ -31,7 +31,7 @@ trainer:
       monitor: val/RMSE
       patience: 10
       mode: min
-  max_epochs: 2000
+  max_epochs: 250
   check_val_every_n_epoch: 1
   log_every_n_steps: 10
   enable_checkpointing: true
@@ -40,16 +40,16 @@ data:
   class_path: BioMasstersNonGeoDataModule
   init_args:
     data_root: '/data'
-    batch_size: 4
-    num_workers: 8
+    batch_size: 2
+    num_workers: 4
     bands:
-      S1:
-        - VV_Asc
-        - VH_Asc
-        - VV_Desc
-        - VH_Desc
-        - RVI_Asc
-        - RVI_Desc
+      # S1:
+      #   - VV_Asc
+      #   - VH_Asc
+      #   - VV_Desc
+      #   - VH_Desc
+      #   - RVI_Asc
+      #   - RVI_Desc
       S2:
         - BLUE
         - GREEN
@@ -66,53 +66,53 @@ data:
       - class_path: FlattenTemporalIntoChannels
       - class_path: albumentations.RandomCrop
         init_args:
-          height: 224
-          width: 224
+          height: 256
+          width: 256
       - class_path: albumentations.D4
       - class_path: ToTensorV2
       - class_path: UnflattenTemporalFromChannels
         init_args:
-          n_timesteps: 4
+          n_timesteps: 12
     val_transform:
       - class_path: FlattenTemporalIntoChannels
       - class_path: albumentations.CenterCrop
         init_args:
-          height: 224
-          width: 224
+          height: 256
+          width: 256
       - class_path: ToTensorV2
       - class_path: UnflattenTemporalFromChannels
         init_args:
-          n_timesteps: 4
+          n_timesteps: 12
     test_transform: 
       - class_path: FlattenTemporalIntoChannels
       - class_path: albumentations.CenterCrop
         init_args:
-          height: 224
-          width: 224
+          height: 256
+          width: 256
       - class_path: ToTensorV2
       - class_path: UnflattenTemporalFromChannels
         init_args:
-          n_timesteps: 4
+          n_timesteps: 12
     predict_transform: 
       - class_path: FlattenTemporalIntoChannels
       - class_path: albumentations.CenterCrop
         init_args:
-          height: 224
-          width: 224
+          height: 256
+          width: 256
       - class_path: ToTensorV2
       - class_path: UnflattenTemporalFromChannels
         init_args:
-          n_timesteps: 4
+          n_timesteps: 12
     drop_last: true
     metadata_filename: "biomassters_chip_tracker.csv"
     sensors:
+      # - S1
       - S2
-      - S1
     as_time_series: true
-    subset: 0.1
+    subset: 0.2
     use_four_frames: false
     input_zeros_for_missing_frames: true
-    concat_bands: true
+    concat_bands: false
 
 model:
   class_path: terratorch.tasks.PixelwiseRegressionTask
@@ -121,49 +121,32 @@ model:
     model_args:
       backbone: prithvi_eo_v2_300
       backbone_padding: reflect
+      backbone_pretrained: true
       backbone_patch_size: 16
-      backbone_num_frames: 4
+      backbone_num_frames: 12
       backbone_bands:
-        - VV_Asc
-        - VH_Asc
-        - VV_Desc
-        - VH_Desc
-        - RVI_Asc
-        - RVI_Desc
-        - VV_As
-        - VV_Asc
-        - VH_Asc
-        - VV_Desc
-        - VH_Desc
-        - RVI_Asc
-        - VV_As
-        - VV_Asc
-        - VH_Asc
-        - VV_Desc
-        - VH_Desc
-        - RVI_Asc
+        # - VV_Asc
+        # - VH_Asc
+        # - VV_Desc
+        # - VH_Desc
+        # - RVI_Asc
+        # - RVI_Desc
         - BLUE
         - GREEN
         - RED
+        # - RED_EDGE_1
+        # - RED_EDGE_2
+        # - RED_EDGE_3
         - NIR_BROAD
+        # - NIR_NARROW
         - SWIR_1
         - SWIR_2
-        - BLUE
-        - GREEN
-        - RED
-        - NIR_BROAD
-        - SWIR_1
-        - SWIR_2
-        - BLUE
-        - GREEN
-        - RED
-        - NIR_BROAD
-        - SWIR_1
-        - SWIR_2
+        # - CLOUD_PROBABILITY
       rescale: true
       decoder: FCNDecoder
+      # decoder_scale_modules: true
       decoder_num_convs: 4
-      decoder_channels: 256
+      # decoder_channels: 256
       head_channel_list:
       head_dropout: 0.1
       head_final_act: torch.nn.ReLU
@@ -186,21 +169,20 @@ model:
         # - 23
         # - 31
       - name: ReshapeTokensToImage
-        effective_time_dim: 4
-      # peft_config:
-      #   method: LORA
-      #   replace_qkv: qkv
-      #   peft_config_kwargs:
-      #     target_modules:
-      #     - qkv.q_linear
-      #     - qkv.v_linear
-      #     - mlp.fc1
-      #     - mlp.fc2
-      #     r: 8
-      #     lora_alpha: 32
-      #     lora_dropout: 0.1
+        effective_time_dim: 12
+      peft_config:
+        method: LORA
+        replace_qkv: qkv
+        peft_config_kwargs:
+          target_modules:
+          - qkv.q_linear
+          - qkv.v_linear
+          - mlp.fc1
+          - mlp.fc2
+          r: 8
+          lora_alpha: 32
+          lora_dropout: 0.1
     loss: rmse
-    plot_on_val: True
 
 optimizer:
   class_path: torch.optim.AdamW
@@ -211,4 +193,3 @@ lr_scheduler:
   class_path: ReduceLROnPlateau
   init_args:
     monitor: val/loss
-

@@ -108,8 +108,8 @@ baseline_root = Path('/baseline/test/')
 input_dir = baseline_root / 'inputs'
 target_dir = baseline_root / 'targets'
 baseline_dir = baseline_root / 'outputs'
-pred_root = Path('/output/paper_experiments')
-pred_dir = pred_root / 's2_s1_12_step'
+pred_root = Path('/output/final_experiments')
+pred_dir = pred_root / '2_biomassters_12_step_lora_300'
 print('plotting predictions...')
 plot_predictions_with_baseline(input_dir, target_dir, baseline_dir, pred_dir)
 print('plotting histograms...')
