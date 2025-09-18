@@ -1,0 +1,814 @@
+Starting experiment series for terratorch/examples/confs/biomassters/final_experiments/8_biomassters_s2_12_step_lora_300_10_subset.yaml on GPU 6
+Starting experiment series for terratorch/examples/confs/biomassters/final_experiments/7_biomassters_s2_12_step_lora_300_20_subset.yaml on GPU 5
+Starting experiment series for terratorch/examples/confs/biomassters/final_experiments/9_biomassters_s2_12_step_lora_300_05_subset.yaml on GPU 7
+Starting experiment series for terratorch/examples/confs/biomassters/final_experiments/6_biomassters_s2_12_step_lora_300_50_subset.yaml on GPU 4
+--- Starting repetition 1 of 3 for terratorch/examples/confs/biomassters/final_experiments/8_biomassters_s2_12_step_lora_300_10_subset.yaml on GPU 6 ---
+--- Starting repetition 1 of 3 for terratorch/examples/confs/biomassters/final_experiments/9_biomassters_s2_12_step_lora_300_05_subset.yaml on GPU 7 ---
+--- Starting repetition 1 of 3 for terratorch/examples/confs/biomassters/final_experiments/7_biomassters_s2_12_step_lora_300_20_subset.yaml on GPU 5 ---
+--- Starting repetition 1 of 3 for terratorch/examples/confs/biomassters/final_experiments/6_biomassters_s2_12_step_lora_300_50_subset.yaml on GPU 4 ---
+Seed set to 2
+Seed set to 2
+Seed set to 2
+Seed set to 2
+WARNING:root:Decoder FCNDecoder does not have an `includes_head` attribute. Falling back to the value of the registry.
+/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/cli.py:683: `PixelwiseRegressionTask.configure_optimizers` will be overridden by `MyLightningCLI.configure_optimizers`.
+Using 16bit Automatic Mixed Precision (AMP)
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+HPU available: False, using: 0 HPUs
+WARNING:root:Decoder FCNDecoder does not have an `includes_head` attribute. Falling back to the value of the registry.
+/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/cli.py:683: `PixelwiseRegressionTask.configure_optimizers` will be overridden by `MyLightningCLI.configure_optimizers`.
+Using 16bit Automatic Mixed Precision (AMP)
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+HPU available: False, using: 0 HPUs
+WARNING:root:Decoder FCNDecoder does not have an `includes_head` attribute. Falling back to the value of the registry.
+WARNING:root:Decoder FCNDecoder does not have an `includes_head` attribute. Falling back to the value of the registry.
+/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/cli.py:683: `PixelwiseRegressionTask.configure_optimizers` will be overridden by `MyLightningCLI.configure_optimizers`.
+Using 16bit Automatic Mixed Precision (AMP)
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+HPU available: False, using: 0 HPUs
+/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/cli.py:683: `PixelwiseRegressionTask.configure_optimizers` will be overridden by `MyLightningCLI.configure_optimizers`.
+Using 16bit Automatic Mixed Precision (AMP)
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+HPU available: False, using: 0 HPUs
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [7]
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [6]
+┏━━━┳━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━┳━━━━━━━━┳━━━━━━━┓
+┃   ┃ Name          ┃ Type             ┃ Params ┃ Mode  ┃
+┡━━━╇━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━╇━━━━━━━━╇━━━━━━━┩
+│ 0 │ model         │ PixelWiseModel   │  322 M │ train │
+│ 1 │ criterion     │ RootLossWrapper  │      0 │ train │
+│ 2 │ train_metrics │ MetricCollection │      0 │ train │
+│ 3 │ val_metrics   │ MetricCollection │      0 │ train │
+│ 4 │ test_metrics  │ ModuleList       │      0 │ train │
+└───┴───────────────┴──────────────────┴────────┴───────┘
+Trainable params: 18.9 M                                                        
+Non-trainable params: 303 M                                                     
+Total params: 322 M                                                             
+Total estimated model params size (MB): 1.3 K                                   
+Modules in train mode: 1644                                                     
+Modules in eval mode: 0                                                         
+┏━━━┳━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━┳━━━━━━━━┳━━━━━━━┓
+┃   ┃ Name          ┃ Type             ┃ Params ┃ Mode  ┃
+┡━━━╇━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━╇━━━━━━━━╇━━━━━━━┩
+│ 0 │ model         │ PixelWiseModel   │  322 M │ train │
+│ 1 │ criterion     │ RootLossWrapper  │      0 │ train │
+│ 2 │ train_metrics │ MetricCollection │      0 │ train │
+│ 3 │ val_metrics   │ MetricCollection │      0 │ train │
+│ 4 │ test_metrics  │ ModuleList       │      0 │ train │
+└───┴───────────────┴──────────────────┴────────┴───────┘
+Trainable params: 18.9 M                                                        
+Non-trainable params: 303 M                                                     
+Total params: 322 M                                                             
+Total estimated model params size (MB): 1.3 K                                   
+Modules in train mode: 1644                                                     
+Modules in eval mode: 0                                                         
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [4]
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [5]
+┏━━━┳━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━┳━━━━━━━━┳━━━━━━━┓
+┃   ┃ Name          ┃ Type             ┃ Params ┃ Mode  ┃
+┡━━━╇━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━╇━━━━━━━━╇━━━━━━━┩
+│ 0 │ model         │ PixelWiseModel   │  322 M │ train │
+│ 1 │ criterion     │ RootLossWrapper  │      0 │ train │
+│ 2 │ train_metrics │ MetricCollection │      0 │ train │
+│ 3 │ val_metrics   │ MetricCollection │      0 │ train │
+│ 4 │ test_metrics  │ ModuleList       │      0 │ train │
+└───┴───────────────┴──────────────────┴────────┴───────┘
+Trainable params: 18.9 M                                                        
+Non-trainable params: 303 M                                                     
+Total params: 322 M                                                             
+Total estimated model params size (MB): 1.3 K                                   
+Modules in train mode: 1644                                                     
+Modules in eval mode: 0                                                         
+┏━━━┳━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━┳━━━━━━━━┳━━━━━━━┓
+┃   ┃ Name          ┃ Type             ┃ Params ┃ Mode  ┃
+┡━━━╇━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━╇━━━━━━━━╇━━━━━━━┩
+│ 0 │ model         │ PixelWiseModel   │  322 M │ train │
+│ 1 │ criterion     │ RootLossWrapper  │      0 │ train │
+│ 2 │ train_metrics │ MetricCollection │      0 │ train │
+│ 3 │ val_metrics   │ MetricCollection │      0 │ train │
+│ 4 │ test_metrics  │ ModuleList       │      0 │ train │
+└───┴───────────────┴──────────────────┴────────┴───────┘
+Trainable params: 18.9 M                                                        
+Non-trainable params: 303 M                                                     
+Total params: 322 M                                                             
+Total estimated model params size (MB): 1.3 K                                   
+Modules in train mode: 1644                                                     
+Modules in eval mode: 0                                                         
+Epoch 40/499 ━━━━━━━━━━━━━━━━━━━ 347/347 0:05:01 • 0:00:00 1.16it/s v_num: 0.000
+--- Repetition 1 for terratorch/examples/confs/biomassters/final_experiments/8_biomassters_s2_12_step_lora_300_10_subset.yaml finished ---
+--- Starting repetition 2 of 3 for terratorch/examples/confs/biomassters/final_experiments/8_biomassters_s2_12_step_lora_300_10_subset.yaml on GPU 6 ---
+Seed set to 3
+WARNING:root:Decoder FCNDecoder does not have an `includes_head` attribute. Falling back to the value of the registry.
+/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/cli.py:683: `PixelwiseRegressionTask.configure_optimizers` will be overridden by `MyLightningCLI.configure_optimizers`.
+Using 16bit Automatic Mixed Precision (AMP)
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+HPU available: False, using: 0 HPUs
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [6]
+┏━━━┳━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━┳━━━━━━━━┳━━━━━━━┓
+┃   ┃ Name          ┃ Type             ┃ Params ┃ Mode  ┃
+┡━━━╇━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━╇━━━━━━━━╇━━━━━━━┩
+│ 0 │ model         │ PixelWiseModel   │  322 M │ train │
+│ 1 │ criterion     │ RootLossWrapper  │      0 │ train │
+│ 2 │ train_metrics │ MetricCollection │      0 │ train │
+│ 3 │ val_metrics   │ MetricCollection │      0 │ train │
+│ 4 │ test_metrics  │ ModuleList       │      0 │ train │
+└───┴───────────────┴──────────────────┴────────┴───────┘
+Trainable params: 18.9 M                                                        
+Non-trainable params: 303 M                                                     
+Total params: 322 M                                                             
+Total estimated model params size (MB): 1.3 K                                   
+Modules in train mode: 1644                                                     
+Modules in eval mode: 0                                                         
+Epoch 85/999 ━━━━━━━━━━━━━━━━━━━ 173/173 0:02:33 • 0:00:00 1.13it/s v_num: 0.000
+--- Repetition 1 for terratorch/examples/confs/biomassters/final_experiments/9_biomassters_s2_12_step_lora_300_05_subset.yaml finished ---
+--- Starting repetition 2 of 3 for terratorch/examples/confs/biomassters/final_experiments/9_biomassters_s2_12_step_lora_300_05_subset.yaml on GPU 7 ---
+Seed set to 3
+/opt/app-root/src/venv/lib/python3.12/site-packages/torch/cuda/__init__.py:829: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+WARNING:bitsandbytes.cextension:The 8-bit optimizer is not available on your device, only available on CUDA for now.
+WARNING:root:Decoder FCNDecoder does not have an `includes_head` attribute. Falling back to the value of the registry.
+/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/cli.py:683: `PixelwiseRegressionTask.configure_optimizers` will be overridden by `MyLightningCLI.configure_optimizers`.
+/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/connectors/accelerator_connector.py:513: You passed `Trainer(accelerator='cpu', precision='16-mixed')` but AMP with fp16 is not supported on CPU. Using `precision='bf16-mixed'` instead.
+Using bfloat16 Automatic Mixed Precision (AMP)
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+HPU available: False, using: 0 HPUs
+┏━━━┳━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━┳━━━━━━━━┳━━━━━━━┓
+┃   ┃ Name          ┃ Type             ┃ Params ┃ Mode  ┃
+┡━━━╇━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━╇━━━━━━━━╇━━━━━━━┩
+│ 0 │ model         │ PixelWiseModel   │  322 M │ train │
+│ 1 │ criterion     │ RootLossWrapper  │      0 │ train │
+│ 2 │ train_metrics │ MetricCollection │      0 │ train │
+│ 3 │ val_metrics   │ MetricCollection │      0 │ train │
+│ 4 │ test_metrics  │ ModuleList       │      0 │ train │
+└───┴───────────────┴──────────────────┴────────┴───────┘
+Trainable params: 18.9 M                                                        
+Non-trainable params: 303 M                                                     
+Total params: 322 M                                                             
+Total estimated model params size (MB): 1.3 K                                   
+Modules in train mode: 1644                                                     
+Modules in eval mode: 0                                                         
+/opt/app-root/src/venv/lib/python3.12/site-packages/torch/cuda/__init__.py:829: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+
+Traceback (most recent call last):
+  File "/opt/app-root/src/venv/bin/terratorch", line 7, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/opt/app-root/src/terratorch/terratorch/__main__.py", line 111, in main
+    _ = build_lightning_cli()
+        ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/terratorch/terratorch/cli_tools.py", line 604, in build_lightning_cli
+    return MyLightningCLI(
+           ^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/cli.py", line 398, in __init__
+    self._run_subcommand(self.subcommand)
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/cli.py", line 708, in _run_subcommand
+    fn(**fn_kwargs)
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/trainer.py", line 561, in fit
+    call._call_and_handle_interrupt(
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/call.py", line 48, in _call_and_handle_interrupt
+    return trainer_fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/trainer.py", line 599, in _fit_impl
+    self._run(model, ckpt_path=ckpt_path)
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/trainer.py", line 1012, in _run
+    results = self._run_stage()
+              ^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/trainer.py", line 1054, in _run_stage
+    self._run_sanity_check()
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/trainer.py", line 1083, in _run_sanity_check
+    val_loop.run()
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/loops/utilities.py", line 179, in _decorator
+    return loop_run(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/loops/evaluation_loop.py", line 145, in run
+    self._evaluation_step(batch, batch_idx, dataloader_idx, dataloader_iter)
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/loops/evaluation_loop.py", line 437, in _evaluation_step
+    output = call._call_strategy_hook(trainer, hook_name, *step_args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/call.py", line 328, in _call_strategy_hook
+    output = fn(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/strategies/strategy.py", line 412, in validation_step
+    return self.lightning_module.validation_step(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/terratorch/terratorch/tasks/regression_tasks.py", line 339, in validation_step
+    fig = datamodule.val_dataset.plot(sample)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/terratorch/terratorch/datasets/biomassters.py", line 509, in plot
+    pred_im = axs[pred_idx].imshow(prediction, cmap="YlGn", vmin=0, vmax=300)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/matplotlib/__init__.py", line 1524, in inner
+    return func(
+           ^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/matplotlib/axes/_axes.py", line 5982, in imshow
+    im.set_data(X)
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/matplotlib/image.py", line 685, in set_data
+    self._A = self._normalize_image_array(A)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/matplotlib/image.py", line 646, in _normalize_image_array
+    A = cbook.safe_masked_invalid(A, copy=True)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/matplotlib/cbook.py", line 684, in safe_masked_invalid
+    x = np.array(x, subok=True, copy=copy)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/torch/_tensor.py", line 1226, in __array__
+    return self.numpy()
+           ^^^^^^^^^^^^
+TypeError: Got unsupported ScalarType BFloat16
+--- Repetition 2 for terratorch/examples/confs/biomassters/final_experiments/9_biomassters_s2_12_step_lora_300_05_subset.yaml finished ---
+--- Starting repetition 3 of 3 for terratorch/examples/confs/biomassters/final_experiments/9_biomassters_s2_12_step_lora_300_05_subset.yaml on GPU 7 ---
+Seed set to 4
+/opt/app-root/src/venv/lib/python3.12/site-packages/torch/cuda/__init__.py:829: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+WARNING:bitsandbytes.cextension:The 8-bit optimizer is not available on your device, only available on CUDA for now.
+WARNING:root:Decoder FCNDecoder does not have an `includes_head` attribute. Falling back to the value of the registry.
+/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/cli.py:683: `PixelwiseRegressionTask.configure_optimizers` will be overridden by `MyLightningCLI.configure_optimizers`.
+/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/connectors/accelerator_connector.py:513: You passed `Trainer(accelerator='cpu', precision='16-mixed')` but AMP with fp16 is not supported on CPU. Using `precision='bf16-mixed'` instead.
+Using bfloat16 Automatic Mixed Precision (AMP)
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+HPU available: False, using: 0 HPUs
+┏━━━┳━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━┳━━━━━━━━┳━━━━━━━┓
+┃   ┃ Name          ┃ Type             ┃ Params ┃ Mode  ┃
+┡━━━╇━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━╇━━━━━━━━╇━━━━━━━┩
+│ 0 │ model         │ PixelWiseModel   │  322 M │ train │
+│ 1 │ criterion     │ RootLossWrapper  │      0 │ train │
+│ 2 │ train_metrics │ MetricCollection │      0 │ train │
+│ 3 │ val_metrics   │ MetricCollection │      0 │ train │
+│ 4 │ test_metrics  │ ModuleList       │      0 │ train │
+└───┴───────────────┴──────────────────┴────────┴───────┘
+Trainable params: 18.9 M                                                        
+Non-trainable params: 303 M                                                     
+Total params: 322 M                                                             
+Total estimated model params size (MB): 1.3 K                                   
+Modules in train mode: 1644                                                     
+Modules in eval mode: 0                                                         
+/opt/app-root/src/venv/lib/python3.12/site-packages/torch/cuda/__init__.py:829: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+
+Traceback (most recent call last):
+  File "/opt/app-root/src/venv/bin/terratorch", line 7, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/opt/app-root/src/terratorch/terratorch/__main__.py", line 111, in main
+    _ = build_lightning_cli()
+        ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/terratorch/terratorch/cli_tools.py", line 604, in build_lightning_cli
+    return MyLightningCLI(
+           ^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/cli.py", line 398, in __init__
+    self._run_subcommand(self.subcommand)
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/cli.py", line 708, in _run_subcommand
+    fn(**fn_kwargs)
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/trainer.py", line 561, in fit
+    call._call_and_handle_interrupt(
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/call.py", line 48, in _call_and_handle_interrupt
+    return trainer_fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/trainer.py", line 599, in _fit_impl
+    self._run(model, ckpt_path=ckpt_path)
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/trainer.py", line 1012, in _run
+    results = self._run_stage()
+              ^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/trainer.py", line 1054, in _run_stage
+    self._run_sanity_check()
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/trainer.py", line 1083, in _run_sanity_check
+    val_loop.run()
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/loops/utilities.py", line 179, in _decorator
+    return loop_run(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/loops/evaluation_loop.py", line 145, in run
+    self._evaluation_step(batch, batch_idx, dataloader_idx, dataloader_iter)
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/loops/evaluation_loop.py", line 437, in _evaluation_step
+    output = call._call_strategy_hook(trainer, hook_name, *step_args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/call.py", line 328, in _call_strategy_hook
+    output = fn(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/strategies/strategy.py", line 412, in validation_step
+    return self.lightning_module.validation_step(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/terratorch/terratorch/tasks/regression_tasks.py", line 339, in validation_step
+    fig = datamodule.val_dataset.plot(sample)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/terratorch/terratorch/datasets/biomassters.py", line 509, in plot
+    pred_im = axs[pred_idx].imshow(prediction, cmap="YlGn", vmin=0, vmax=300)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/matplotlib/__init__.py", line 1524, in inner
+    return func(
+           ^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/matplotlib/axes/_axes.py", line 5982, in imshow
+    im.set_data(X)
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/matplotlib/image.py", line 685, in set_data
+    self._A = self._normalize_image_array(A)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/matplotlib/image.py", line 646, in _normalize_image_array
+    A = cbook.safe_masked_invalid(A, copy=True)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/matplotlib/cbook.py", line 684, in safe_masked_invalid
+    x = np.array(x, subok=True, copy=copy)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/torch/_tensor.py", line 1226, in __array__
+    return self.numpy()
+           ^^^^^^^^^^^^
+TypeError: Got unsupported ScalarType BFloat16
+--- Repetition 3 for terratorch/examples/confs/biomassters/final_experiments/9_biomassters_s2_12_step_lora_300_05_subset.yaml finished ---
+Epoch 57/499 ━━━━━━━━━━━━━━━━━━━ 347/347 0:05:01 • 0:00:00 1.15it/s v_num: 1.000
+--- Repetition 2 for terratorch/examples/confs/biomassters/final_experiments/8_biomassters_s2_12_step_lora_300_10_subset.yaml finished ---
+--- Starting repetition 3 of 3 for terratorch/examples/confs/biomassters/final_experiments/8_biomassters_s2_12_step_lora_300_10_subset.yaml on GPU 6 ---
+Seed set to 4
+/opt/app-root/src/venv/lib/python3.12/site-packages/torch/cuda/__init__.py:829: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+WARNING:bitsandbytes.cextension:The 8-bit optimizer is not available on your device, only available on CUDA for now.
+WARNING:root:Decoder FCNDecoder does not have an `includes_head` attribute. Falling back to the value of the registry.
+/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/cli.py:683: `PixelwiseRegressionTask.configure_optimizers` will be overridden by `MyLightningCLI.configure_optimizers`.
+/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/connectors/accelerator_connector.py:513: You passed `Trainer(accelerator='cpu', precision='16-mixed')` but AMP with fp16 is not supported on CPU. Using `precision='bf16-mixed'` instead.
+Using bfloat16 Automatic Mixed Precision (AMP)
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+HPU available: False, using: 0 HPUs
+┏━━━┳━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━┳━━━━━━━━┳━━━━━━━┓
+┃   ┃ Name          ┃ Type             ┃ Params ┃ Mode  ┃
+┡━━━╇━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━╇━━━━━━━━╇━━━━━━━┩
+│ 0 │ model         │ PixelWiseModel   │  322 M │ train │
+│ 1 │ criterion     │ RootLossWrapper  │      0 │ train │
+│ 2 │ train_metrics │ MetricCollection │      0 │ train │
+│ 3 │ val_metrics   │ MetricCollection │      0 │ train │
+│ 4 │ test_metrics  │ ModuleList       │      0 │ train │
+└───┴───────────────┴──────────────────┴────────┴───────┘
+Trainable params: 18.9 M                                                        
+Non-trainable params: 303 M                                                     
+Total params: 322 M                                                             
+Total estimated model params size (MB): 1.3 K                                   
+Modules in train mode: 1644                                                     
+Modules in eval mode: 0                                                         
+/opt/app-root/src/venv/lib/python3.12/site-packages/torch/cuda/__init__.py:829: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+
+Traceback (most recent call last):
+  File "/opt/app-root/src/venv/bin/terratorch", line 7, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/opt/app-root/src/terratorch/terratorch/__main__.py", line 111, in main
+    _ = build_lightning_cli()
+        ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/terratorch/terratorch/cli_tools.py", line 604, in build_lightning_cli
+    return MyLightningCLI(
+           ^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/cli.py", line 398, in __init__
+    self._run_subcommand(self.subcommand)
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/cli.py", line 708, in _run_subcommand
+    fn(**fn_kwargs)
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/trainer.py", line 561, in fit
+    call._call_and_handle_interrupt(
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/call.py", line 48, in _call_and_handle_interrupt
+    return trainer_fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/trainer.py", line 599, in _fit_impl
+    self._run(model, ckpt_path=ckpt_path)
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/trainer.py", line 1012, in _run
+    results = self._run_stage()
+              ^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/trainer.py", line 1054, in _run_stage
+    self._run_sanity_check()
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/trainer.py", line 1083, in _run_sanity_check
+    val_loop.run()
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/loops/utilities.py", line 179, in _decorator
+    return loop_run(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/loops/evaluation_loop.py", line 145, in run
+    self._evaluation_step(batch, batch_idx, dataloader_idx, dataloader_iter)
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/loops/evaluation_loop.py", line 437, in _evaluation_step
+    output = call._call_strategy_hook(trainer, hook_name, *step_args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/call.py", line 328, in _call_strategy_hook
+    output = fn(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/strategies/strategy.py", line 412, in validation_step
+    return self.lightning_module.validation_step(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/terratorch/terratorch/tasks/regression_tasks.py", line 339, in validation_step
+    fig = datamodule.val_dataset.plot(sample)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/terratorch/terratorch/datasets/biomassters.py", line 509, in plot
+    pred_im = axs[pred_idx].imshow(prediction, cmap="YlGn", vmin=0, vmax=300)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/matplotlib/__init__.py", line 1524, in inner
+    return func(
+           ^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/matplotlib/axes/_axes.py", line 5982, in imshow
+    im.set_data(X)
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/matplotlib/image.py", line 685, in set_data
+    self._A = self._normalize_image_array(A)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/matplotlib/image.py", line 646, in _normalize_image_array
+    A = cbook.safe_masked_invalid(A, copy=True)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/matplotlib/cbook.py", line 684, in safe_masked_invalid
+    x = np.array(x, subok=True, copy=copy)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/torch/_tensor.py", line 1226, in __array__
+    return self.numpy()
+           ^^^^^^^^^^^^
+TypeError: Got unsupported ScalarType BFloat16
+--- Repetition 3 for terratorch/examples/confs/biomassters/final_experiments/8_biomassters_s2_12_step_lora_300_10_subset.yaml finished ---
+Epoch 85/249 ━━━━━━━━━━━━━━━━━━━ 695/695 0:10:03 • 0:00:00 1.15it/s v_num: 0.000
+--- Repetition 1 for terratorch/examples/confs/biomassters/final_experiments/7_biomassters_s2_12_step_lora_300_20_subset.yaml finished ---
+--- Starting repetition 2 of 3 for terratorch/examples/confs/biomassters/final_experiments/7_biomassters_s2_12_step_lora_300_20_subset.yaml on GPU 5 ---
+Seed set to 3
+/opt/app-root/src/venv/lib/python3.12/site-packages/torch/cuda/__init__.py:829: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+WARNING:bitsandbytes.cextension:The 8-bit optimizer is not available on your device, only available on CUDA for now.
+WARNING:root:Decoder FCNDecoder does not have an `includes_head` attribute. Falling back to the value of the registry.
+/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/cli.py:683: `PixelwiseRegressionTask.configure_optimizers` will be overridden by `MyLightningCLI.configure_optimizers`.
+/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/connectors/accelerator_connector.py:513: You passed `Trainer(accelerator='cpu', precision='16-mixed')` but AMP with fp16 is not supported on CPU. Using `precision='bf16-mixed'` instead.
+Using bfloat16 Automatic Mixed Precision (AMP)
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+HPU available: False, using: 0 HPUs
+┏━━━┳━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━┳━━━━━━━━┳━━━━━━━┓
+┃   ┃ Name          ┃ Type             ┃ Params ┃ Mode  ┃
+┡━━━╇━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━╇━━━━━━━━╇━━━━━━━┩
+│ 0 │ model         │ PixelWiseModel   │  322 M │ train │
+│ 1 │ criterion     │ RootLossWrapper  │      0 │ train │
+│ 2 │ train_metrics │ MetricCollection │      0 │ train │
+│ 3 │ val_metrics   │ MetricCollection │      0 │ train │
+│ 4 │ test_metrics  │ ModuleList       │      0 │ train │
+└───┴───────────────┴──────────────────┴────────┴───────┘
+Trainable params: 18.9 M                                                        
+Non-trainable params: 303 M                                                     
+Total params: 322 M                                                             
+Total estimated model params size (MB): 1.3 K                                   
+Modules in train mode: 1644                                                     
+Modules in eval mode: 0                                                         
+/opt/app-root/src/venv/lib/python3.12/site-packages/torch/cuda/__init__.py:829: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+
+Traceback (most recent call last):
+  File "/opt/app-root/src/venv/bin/terratorch", line 7, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/opt/app-root/src/terratorch/terratorch/__main__.py", line 111, in main
+    _ = build_lightning_cli()
+        ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/terratorch/terratorch/cli_tools.py", line 604, in build_lightning_cli
+    return MyLightningCLI(
+           ^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/cli.py", line 398, in __init__
+    self._run_subcommand(self.subcommand)
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/cli.py", line 708, in _run_subcommand
+    fn(**fn_kwargs)
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/trainer.py", line 561, in fit
+    call._call_and_handle_interrupt(
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/call.py", line 48, in _call_and_handle_interrupt
+    return trainer_fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/trainer.py", line 599, in _fit_impl
+    self._run(model, ckpt_path=ckpt_path)
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/trainer.py", line 1012, in _run
+    results = self._run_stage()
+              ^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/trainer.py", line 1054, in _run_stage
+    self._run_sanity_check()
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/trainer.py", line 1083, in _run_sanity_check
+    val_loop.run()
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/loops/utilities.py", line 179, in _decorator
+    return loop_run(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/loops/evaluation_loop.py", line 145, in run
+    self._evaluation_step(batch, batch_idx, dataloader_idx, dataloader_iter)
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/loops/evaluation_loop.py", line 437, in _evaluation_step
+    output = call._call_strategy_hook(trainer, hook_name, *step_args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/call.py", line 328, in _call_strategy_hook
+    output = fn(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/strategies/strategy.py", line 412, in validation_step
+    return self.lightning_module.validation_step(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/terratorch/terratorch/tasks/regression_tasks.py", line 339, in validation_step
+    fig = datamodule.val_dataset.plot(sample)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/terratorch/terratorch/datasets/biomassters.py", line 509, in plot
+    pred_im = axs[pred_idx].imshow(prediction, cmap="YlGn", vmin=0, vmax=300)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/matplotlib/__init__.py", line 1524, in inner
+    return func(
+           ^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/matplotlib/axes/_axes.py", line 5982, in imshow
+    im.set_data(X)
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/matplotlib/image.py", line 685, in set_data
+    self._A = self._normalize_image_array(A)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/matplotlib/image.py", line 646, in _normalize_image_array
+    A = cbook.safe_masked_invalid(A, copy=True)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/matplotlib/cbook.py", line 684, in safe_masked_invalid
+    x = np.array(x, subok=True, copy=copy)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/torch/_tensor.py", line 1226, in __array__
+    return self.numpy()
+           ^^^^^^^^^^^^
+TypeError: Got unsupported ScalarType BFloat16
+--- Repetition 2 for terratorch/examples/confs/biomassters/final_experiments/7_biomassters_s2_12_step_lora_300_20_subset.yaml finished ---
+--- Starting repetition 3 of 3 for terratorch/examples/confs/biomassters/final_experiments/7_biomassters_s2_12_step_lora_300_20_subset.yaml on GPU 5 ---
+Seed set to 4
+/opt/app-root/src/venv/lib/python3.12/site-packages/torch/cuda/__init__.py:829: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+WARNING:bitsandbytes.cextension:The 8-bit optimizer is not available on your device, only available on CUDA for now.
+WARNING:root:Decoder FCNDecoder does not have an `includes_head` attribute. Falling back to the value of the registry.
+/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/cli.py:683: `PixelwiseRegressionTask.configure_optimizers` will be overridden by `MyLightningCLI.configure_optimizers`.
+/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/connectors/accelerator_connector.py:513: You passed `Trainer(accelerator='cpu', precision='16-mixed')` but AMP with fp16 is not supported on CPU. Using `precision='bf16-mixed'` instead.
+Using bfloat16 Automatic Mixed Precision (AMP)
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+HPU available: False, using: 0 HPUs
+┏━━━┳━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━┳━━━━━━━━┳━━━━━━━┓
+┃   ┃ Name          ┃ Type             ┃ Params ┃ Mode  ┃
+┡━━━╇━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━╇━━━━━━━━╇━━━━━━━┩
+│ 0 │ model         │ PixelWiseModel   │  322 M │ train │
+│ 1 │ criterion     │ RootLossWrapper  │      0 │ train │
+│ 2 │ train_metrics │ MetricCollection │      0 │ train │
+│ 3 │ val_metrics   │ MetricCollection │      0 │ train │
+│ 4 │ test_metrics  │ ModuleList       │      0 │ train │
+└───┴───────────────┴──────────────────┴────────┴───────┘
+Trainable params: 18.9 M                                                        
+Non-trainable params: 303 M                                                     
+Total params: 322 M                                                             
+Total estimated model params size (MB): 1.3 K                                   
+Modules in train mode: 1644                                                     
+Modules in eval mode: 0                                                         
+/opt/app-root/src/venv/lib/python3.12/site-packages/torch/cuda/__init__.py:829: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+
+Traceback (most recent call last):
+  File "/opt/app-root/src/venv/bin/terratorch", line 7, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/opt/app-root/src/terratorch/terratorch/__main__.py", line 111, in main
+    _ = build_lightning_cli()
+        ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/terratorch/terratorch/cli_tools.py", line 604, in build_lightning_cli
+    return MyLightningCLI(
+           ^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/cli.py", line 398, in __init__
+    self._run_subcommand(self.subcommand)
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/cli.py", line 708, in _run_subcommand
+    fn(**fn_kwargs)
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/trainer.py", line 561, in fit
+    call._call_and_handle_interrupt(
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/call.py", line 48, in _call_and_handle_interrupt
+    return trainer_fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/trainer.py", line 599, in _fit_impl
+    self._run(model, ckpt_path=ckpt_path)
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/trainer.py", line 1012, in _run
+    results = self._run_stage()
+              ^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/trainer.py", line 1054, in _run_stage
+    self._run_sanity_check()
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/trainer.py", line 1083, in _run_sanity_check
+    val_loop.run()
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/loops/utilities.py", line 179, in _decorator
+    return loop_run(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/loops/evaluation_loop.py", line 145, in run
+    self._evaluation_step(batch, batch_idx, dataloader_idx, dataloader_iter)
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/loops/evaluation_loop.py", line 437, in _evaluation_step
+    output = call._call_strategy_hook(trainer, hook_name, *step_args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/call.py", line 328, in _call_strategy_hook
+    output = fn(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/strategies/strategy.py", line 412, in validation_step
+    return self.lightning_module.validation_step(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/terratorch/terratorch/tasks/regression_tasks.py", line 339, in validation_step
+    fig = datamodule.val_dataset.plot(sample)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/terratorch/terratorch/datasets/biomassters.py", line 509, in plot
+    pred_im = axs[pred_idx].imshow(prediction, cmap="YlGn", vmin=0, vmax=300)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/matplotlib/__init__.py", line 1524, in inner
+    return func(
+           ^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/matplotlib/axes/_axes.py", line 5982, in imshow
+    im.set_data(X)
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/matplotlib/image.py", line 685, in set_data
+    self._A = self._normalize_image_array(A)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/matplotlib/image.py", line 646, in _normalize_image_array
+    A = cbook.safe_masked_invalid(A, copy=True)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/matplotlib/cbook.py", line 684, in safe_masked_invalid
+    x = np.array(x, subok=True, copy=copy)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/torch/_tensor.py", line 1226, in __array__
+    return self.numpy()
+           ^^^^^^^^^^^^
+TypeError: Got unsupported ScalarType BFloat16
+--- Repetition 3 for terratorch/examples/confs/biomassters/final_experiments/7_biomassters_s2_12_step_lora_300_20_subset.yaml finished ---
+Epoch 74/99 ━━━━━━━━━━━━━━━━━━ 1737/1737 0:25:04 • 0:00:00 1.16it/s v_num: 0.000
+--- Repetition 1 for terratorch/examples/confs/biomassters/final_experiments/6_biomassters_s2_12_step_lora_300_50_subset.yaml finished ---
+--- Starting repetition 2 of 3 for terratorch/examples/confs/biomassters/final_experiments/6_biomassters_s2_12_step_lora_300_50_subset.yaml on GPU 4 ---
+Seed set to 3
+/opt/app-root/src/venv/lib/python3.12/site-packages/torch/cuda/__init__.py:829: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+WARNING:bitsandbytes.cextension:The 8-bit optimizer is not available on your device, only available on CUDA for now.
+WARNING:root:Decoder FCNDecoder does not have an `includes_head` attribute. Falling back to the value of the registry.
+/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/cli.py:683: `PixelwiseRegressionTask.configure_optimizers` will be overridden by `MyLightningCLI.configure_optimizers`.
+/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/connectors/accelerator_connector.py:513: You passed `Trainer(accelerator='cpu', precision='16-mixed')` but AMP with fp16 is not supported on CPU. Using `precision='bf16-mixed'` instead.
+Using bfloat16 Automatic Mixed Precision (AMP)
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+HPU available: False, using: 0 HPUs
+┏━━━┳━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━┳━━━━━━━━┳━━━━━━━┓
+┃   ┃ Name          ┃ Type             ┃ Params ┃ Mode  ┃
+┡━━━╇━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━╇━━━━━━━━╇━━━━━━━┩
+│ 0 │ model         │ PixelWiseModel   │  322 M │ train │
+│ 1 │ criterion     │ RootLossWrapper  │      0 │ train │
+│ 2 │ train_metrics │ MetricCollection │      0 │ train │
+│ 3 │ val_metrics   │ MetricCollection │      0 │ train │
+│ 4 │ test_metrics  │ ModuleList       │      0 │ train │
+└───┴───────────────┴──────────────────┴────────┴───────┘
+Trainable params: 18.9 M                                                        
+Non-trainable params: 303 M                                                     
+Total params: 322 M                                                             
+Total estimated model params size (MB): 1.3 K                                   
+Modules in train mode: 1644                                                     
+Modules in eval mode: 0                                                         
+/opt/app-root/src/venv/lib/python3.12/site-packages/torch/cuda/__init__.py:829: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+
+Traceback (most recent call last):
+  File "/opt/app-root/src/venv/bin/terratorch", line 7, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/opt/app-root/src/terratorch/terratorch/__main__.py", line 111, in main
+    _ = build_lightning_cli()
+        ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/terratorch/terratorch/cli_tools.py", line 604, in build_lightning_cli
+    return MyLightningCLI(
+           ^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/cli.py", line 398, in __init__
+    self._run_subcommand(self.subcommand)
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/cli.py", line 708, in _run_subcommand
+    fn(**fn_kwargs)
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/trainer.py", line 561, in fit
+    call._call_and_handle_interrupt(
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/call.py", line 48, in _call_and_handle_interrupt
+    return trainer_fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/trainer.py", line 599, in _fit_impl
+    self._run(model, ckpt_path=ckpt_path)
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/trainer.py", line 1012, in _run
+    results = self._run_stage()
+              ^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/trainer.py", line 1054, in _run_stage
+    self._run_sanity_check()
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/trainer.py", line 1083, in _run_sanity_check
+    val_loop.run()
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/loops/utilities.py", line 179, in _decorator
+    return loop_run(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/loops/evaluation_loop.py", line 145, in run
+    self._evaluation_step(batch, batch_idx, dataloader_idx, dataloader_iter)
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/loops/evaluation_loop.py", line 437, in _evaluation_step
+    output = call._call_strategy_hook(trainer, hook_name, *step_args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/call.py", line 328, in _call_strategy_hook
+    output = fn(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/strategies/strategy.py", line 412, in validation_step
+    return self.lightning_module.validation_step(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/terratorch/terratorch/tasks/regression_tasks.py", line 339, in validation_step
+    fig = datamodule.val_dataset.plot(sample)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/terratorch/terratorch/datasets/biomassters.py", line 509, in plot
+    pred_im = axs[pred_idx].imshow(prediction, cmap="YlGn", vmin=0, vmax=300)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/matplotlib/__init__.py", line 1524, in inner
+    return func(
+           ^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/matplotlib/axes/_axes.py", line 5982, in imshow
+    im.set_data(X)
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/matplotlib/image.py", line 685, in set_data
+    self._A = self._normalize_image_array(A)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/matplotlib/image.py", line 646, in _normalize_image_array
+    A = cbook.safe_masked_invalid(A, copy=True)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/matplotlib/cbook.py", line 684, in safe_masked_invalid
+    x = np.array(x, subok=True, copy=copy)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/torch/_tensor.py", line 1226, in __array__
+    return self.numpy()
+           ^^^^^^^^^^^^
+TypeError: Got unsupported ScalarType BFloat16
+--- Repetition 2 for terratorch/examples/confs/biomassters/final_experiments/6_biomassters_s2_12_step_lora_300_50_subset.yaml finished ---
+--- Starting repetition 3 of 3 for terratorch/examples/confs/biomassters/final_experiments/6_biomassters_s2_12_step_lora_300_50_subset.yaml on GPU 4 ---
+Seed set to 4
+/opt/app-root/src/venv/lib/python3.12/site-packages/torch/cuda/__init__.py:829: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+WARNING:bitsandbytes.cextension:The 8-bit optimizer is not available on your device, only available on CUDA for now.
+WARNING:root:Decoder FCNDecoder does not have an `includes_head` attribute. Falling back to the value of the registry.
+/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/cli.py:683: `PixelwiseRegressionTask.configure_optimizers` will be overridden by `MyLightningCLI.configure_optimizers`.
+/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/connectors/accelerator_connector.py:513: You passed `Trainer(accelerator='cpu', precision='16-mixed')` but AMP with fp16 is not supported on CPU. Using `precision='bf16-mixed'` instead.
+Using bfloat16 Automatic Mixed Precision (AMP)
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+HPU available: False, using: 0 HPUs
+┏━━━┳━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━┳━━━━━━━━┳━━━━━━━┓
+┃   ┃ Name          ┃ Type             ┃ Params ┃ Mode  ┃
+┡━━━╇━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━╇━━━━━━━━╇━━━━━━━┩
+│ 0 │ model         │ PixelWiseModel   │  322 M │ train │
+│ 1 │ criterion     │ RootLossWrapper  │      0 │ train │
+│ 2 │ train_metrics │ MetricCollection │      0 │ train │
+│ 3 │ val_metrics   │ MetricCollection │      0 │ train │
+│ 4 │ test_metrics  │ ModuleList       │      0 │ train │
+└───┴───────────────┴──────────────────┴────────┴───────┘
+Trainable params: 18.9 M                                                        
+Non-trainable params: 303 M                                                     
+Total params: 322 M                                                             
+Total estimated model params size (MB): 1.3 K                                   
+Modules in train mode: 1644                                                     
+Modules in eval mode: 0                                                         
+/opt/app-root/src/venv/lib/python3.12/site-packages/torch/cuda/__init__.py:829: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+
+Traceback (most recent call last):
+  File "/opt/app-root/src/venv/bin/terratorch", line 7, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/opt/app-root/src/terratorch/terratorch/__main__.py", line 111, in main
+    _ = build_lightning_cli()
+        ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/terratorch/terratorch/cli_tools.py", line 604, in build_lightning_cli
+    return MyLightningCLI(
+           ^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/cli.py", line 398, in __init__
+    self._run_subcommand(self.subcommand)
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/cli.py", line 708, in _run_subcommand
+    fn(**fn_kwargs)
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/trainer.py", line 561, in fit
+    call._call_and_handle_interrupt(
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/call.py", line 48, in _call_and_handle_interrupt
+    return trainer_fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/trainer.py", line 599, in _fit_impl
+    self._run(model, ckpt_path=ckpt_path)
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/trainer.py", line 1012, in _run
+    results = self._run_stage()
+              ^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/trainer.py", line 1054, in _run_stage
+    self._run_sanity_check()
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/trainer.py", line 1083, in _run_sanity_check
+    val_loop.run()
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/loops/utilities.py", line 179, in _decorator
+    return loop_run(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/loops/evaluation_loop.py", line 145, in run
+    self._evaluation_step(batch, batch_idx, dataloader_idx, dataloader_iter)
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/loops/evaluation_loop.py", line 437, in _evaluation_step
+    output = call._call_strategy_hook(trainer, hook_name, *step_args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/call.py", line 328, in _call_strategy_hook
+    output = fn(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/lightning/pytorch/strategies/strategy.py", line 412, in validation_step
+    return self.lightning_module.validation_step(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/terratorch/terratorch/tasks/regression_tasks.py", line 339, in validation_step
+    fig = datamodule.val_dataset.plot(sample)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/terratorch/terratorch/datasets/biomassters.py", line 509, in plot
+    pred_im = axs[pred_idx].imshow(prediction, cmap="YlGn", vmin=0, vmax=300)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/matplotlib/__init__.py", line 1524, in inner
+    return func(
+           ^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/matplotlib/axes/_axes.py", line 5982, in imshow
+    im.set_data(X)
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/matplotlib/image.py", line 685, in set_data
+    self._A = self._normalize_image_array(A)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/matplotlib/image.py", line 646, in _normalize_image_array
+    A = cbook.safe_masked_invalid(A, copy=True)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/matplotlib/cbook.py", line 684, in safe_masked_invalid
+    x = np.array(x, subok=True, copy=copy)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/app-root/src/venv/lib/python3.12/site-packages/torch/_tensor.py", line 1226, in __array__
+    return self.numpy()
+           ^^^^^^^^^^^^
+TypeError: Got unsupported ScalarType BFloat16
+--- Repetition 3 for terratorch/examples/confs/biomassters/final_experiments/6_biomassters_s2_12_step_lora_300_50_subset.yaml finished ---
+All experiment series completed.

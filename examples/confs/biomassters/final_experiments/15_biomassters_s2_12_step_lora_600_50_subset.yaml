@@ -39,8 +39,8 @@ data:
   class_path: BioMasstersNonGeoDataModule
   init_args:
     data_root: '/data'
-    batch_size: 2
-    num_workers: 4
+    batch_size: 1
+    num_workers: 2
     bands:
       # S1:
       #   - VV_Asc
@@ -192,3 +192,6 @@ lr_scheduler:
   class_path: ReduceLROnPlateau
   init_args:
     monitor: val/loss
+
+# Use CLI to override logger for test runs:
+# lightning run test --config <this_yaml> --trainer.logger=CSVLogger --trainer.logger.init_args.save_dir=<your_csv_dir>

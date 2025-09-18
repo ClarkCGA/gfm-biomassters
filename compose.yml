@@ -5,15 +5,52 @@ services:
     stdin_open: true
     tty: true
     volumes:
-       - /workspace/Denys/biomassters/BioMassters-extracted/:/data/
-       - /workspace/Denys/biomassters/gfm-biomassters-terratorch/gfm-biomassters-output/:/output/
-       - /workspace/Denys/biomassters/paper_results/baseline/:/baseline/
-       - /workspace/Denys/biomassters/gfm-biomassters-terratorch/gfm-biomassters/:/opt/app-root/src/terratorch/
-    shm_size: '16gb'
+       - /workspace/Denys/biomassters/BioMassters-extracted/:/data/ # location of BioMassters dataset on host
+       - /workspace/Denys/biomassters/gfm-biomassters-terratorch/gfm-biomassters-output/:/output/ # location to save experiment results
+       - /workspace/Denys/biomassters/paper_results/baseline/:/baseline/ # location of saved baseline outputs for side by side visualizations, if needed
+       - /workspace/Denys/biomassters/gfm-biomassters-terratorch/gfm-biomassters/:/opt/app-root/src/terratorch/ # location of gfm-biomassters repo
+    shm_size: '128gb'
     deploy:
       resources:
         reservations:
           devices:
             - driver: nvidia
-              device_ids: ["0", "1", "2", "3", "5"]
+              device_ids: ["0", "1", "2", "3", "4", "5", "6", "7"]
+              capabilities: [gpu]
+  terratorch2:    
+    image: gfm-biomassters:latest
+    build: .
+    stdin_open: true
+    tty: true
+    volumes:
+       - /workspace/Denys/biomassters/BioMassters-extracted/:/data/
+       - /workspace/Denys/biomassters/gfm-biomassters-terratorch/gfm-biomassters-output/:/output/
+       - /workspace/Denys/biomassters/paper_results/baseline/:/baseline/
+       - /workspace/Denys/biomassters/gfm-biomassters-terratorch/gfm-biomassters/:/opt/app-root/src/terratorch/
+    shm_size: '128gb'
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              device_ids: ["0", "1", "2", "3", "4", "5", "6", "7"]
+              capabilities: [gpu]
+
+  terratorch3:    
+    image: gfm-biomassters:latest
+    build: .
+    stdin_open: true
+    tty: true
+    volumes:
+       - /workspace/Denys/biomassters/BioMassters-extracted/:/data/
+       - /workspace/Denys/biomassters/gfm-biomassters-terratorch/gfm-biomassters-output/:/output/
+       - /workspace/Denys/biomassters/paper_results/baseline/:/baseline/
+       - /workspace/Denys/biomassters/gfm-biomassters-terratorch/gfm-biomassters/:/opt/app-root/src/terratorch/
+    shm_size: '128gb'
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              device_ids: ["0", "1", "2", "3", "4", "5", "6", "7"]
               capabilities: [gpu]
